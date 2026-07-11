@@ -53,16 +53,18 @@ export const devices = [
 export const packages = [
   {
     name: "Basic Package",
-    duration: "1 Month",
-    price: "$20",
-    description: "A simple starting plan for users who want to test the full channelmoa experience with short-term access.",
+    duration: "3 Months",
+    price: "$37",
+    description: "A simple starting plan for users who want three months of access to the full channelmoa experience.",
+    whatsappMessage: "Hello channelmoa, I want the Basic Package for 3 months at $37. Please send me the setup details.",
     features: ["6,000+ Live Channels with EPG", "International & Premium VOD", "PPV & Sports Events", "Up to 3 Devices", "Fast activation support"],
     featured: false
   },
   {
     name: "Silver Package",
     duration: "6 Months",
-    price: "$60",
+    price: "$49",
+    whatsappMessage: "Hello channelmoa, I want the Silver Package for 6 months at $49. Please send me the setup details.",
     description: "A strong value option for regular viewers who want longer access without committing to a full year.",
     features: ["6,000+ Live Channels with EPG", "International & Premium VOD", "PPV & Sports Events", "Up to 3 Devices", "Priority setup assistance"],
     featured: false
@@ -70,7 +72,8 @@ export const packages = [
   {
     name: "Gold Package",
     duration: "12 Months",
-    price: "$80",
+    price: "$67",
+    whatsappMessage: "Hello channelmoa, I want the Gold Package for 12 months at $67. Please send me the setup details.",
     description: "Ideal for long-term users who want a full-year plan with consistent access across supported devices.",
     features: ["6,000+ Live Channels with EPG", "International & Premium VOD", "PPV & Sports Events", "Up to 3 Devices", "Year-long TV access"],
     featured: true
@@ -78,7 +81,8 @@ export const packages = [
   {
     name: "Diamond Package",
     duration: "24 Months",
-    price: "$140",
+    price: "$110",
+    whatsappMessage: "Hello channelmoa, I want the Diamond Package for 24 months at $110. Please send me the setup details.",
     description: "Best value for committed users who want the longest duration and the strongest price-to-access ratio.",
     features: ["6,000+ Live Channels with EPG", "International & Premium VOD", "PPV & Sports Events", "Up to 3 Devices", "Best long-term value"],
     featured: false

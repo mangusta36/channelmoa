@@ -19,6 +19,18 @@
   box-sizing: border-box;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -195,6 +207,27 @@ img {
   padding: 0.72rem 0;
   color: #1d2f49;
   font-weight: 850;
+}
+
+.mobile-nav .mobile-trial-link {
+  margin-top: 0.35rem;
+  border-radius: 10px;
+  color: white;
+  background: linear-gradient(135deg, var(--blue), var(--blue-2));
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .btn {
@@ -799,6 +832,68 @@ p {
   min-height: 100%;
 }
 
+.blog-visual {
+  position: relative;
+  isolation: isolate;
+  min-height: 180px;
+  margin: -1.45rem -1.45rem 1.2rem;
+  padding: 1.25rem;
+  overflow: hidden;
+  color: white;
+  background: linear-gradient(135deg, #071735, #1463f3 62%, #08bfd8);
+}
+
+.blog-visual::before,
+.blog-visual::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.blog-visual::before { width: 190px; height: 190px; right: -65px; top: -75px; }
+.blog-visual::after { width: 110px; height: 110px; left: -35px; bottom: -55px; }
+
+.blog-visual span,
+.blog-visual strong { display: block; }
+
+.blog-visual span {
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 950;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.blog-visual strong {
+  max-width: 85%;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  line-height: 1.25;
+}
+
+.blog-visual i {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.1rem;
+  width: 42%;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 8px;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.26) 0 12px, transparent 12px 20px);
+  box-shadow: -26px -25px 0 -1px rgba(255,255,255,.12);
+}
+
+.visual-moa-tv-app-setup-guide { background: linear-gradient(135deg, #10223e, #7457e8 60%, #14b8a6); }
+.visual-iptv-login-watch-world-cup-guide { background: linear-gradient(135deg, #052e2b, #07825d 60%, #e7a917); }
+.visual-smart-tv-iptv-setup-mistakes { background: linear-gradient(135deg, #321018, #c33b4b 58%, #f08d45); }
+.visual-android-iptv-performance-guide { background: linear-gradient(135deg, #12351c, #24934d 60%, #8acb3c); }
+.visual-firestick-iptv-setup-optimization { background: linear-gradient(135deg, #28152f, #b33d70 58%, #ee7142); }
+.visual-iptv-buffering-root-causes { background: linear-gradient(135deg, #071735, #1d65bd 55%, #40bed0); }
+.visual-iptv-4k-streaming-requirements { background: linear-gradient(135deg, #18142e, #5248be 55%, #d044cb); }
+.visual-iptv-reseller-business-starter-guide { background: linear-gradient(135deg, #102136, #17649c 54%, #16a972); }
+.visual-channelmoa-vs-generic-iptv-services { background: linear-gradient(135deg, #291b0b, #a05b16 55%, #e0a929); }
+
 .blog-card .meta {
   display: inline-flex;
   align-items: center;
@@ -859,6 +954,59 @@ p {
   margin: 0 auto;
   padding: 3.5rem 0;
 }
+
+.article-byline {
+  margin-top: 1.15rem;
+  color: #607089;
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.article-visual {
+  min-height: clamp(240px, 42vw, 390px);
+  margin: 0 0 2.75rem;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.article-visual strong { max-width: 70%; font-size: clamp(1.7rem, 5vw, 3rem); }
+.article-visual i { width: 38%; height: 64px; right: 2rem; bottom: 2rem; }
+
+.expert-guide {
+  margin-top: 2.5rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f7fbff, #fff);
+}
+
+.expert-guide > h2 { margin-top: 0; }
+
+.expert-step {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.3rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.expert-step > span {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  background: var(--blue);
+  font-size: .82rem;
+  font-weight: 950;
+}
+
+.expert-step h3 { margin-top: .35rem; }
+.expert-step p:last-child { margin-bottom: 0; }
+.expert-summary { margin: 1.25rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+.article-cta-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
 
 .article h2 {
   margin-top: 2rem;
@@ -1218,7 +1366,7 @@ p {
   main .btn,
   .cta-band .btn,
   .price-card .btn,
-  .article-cta .btn,
+.article-cta .btn,
   form .btn {
     width: 100%;
   }

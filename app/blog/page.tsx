@@ -4,16 +4,16 @@ import { blogPosts } from "@/data/blog-data";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "channelmoa IPTV Blog | Streaming Guides, Apps, Sports & VOD",
-  description: "Read channelmoa IPTV guides for legal streaming, Smart TV, Android, Firestick, 4K, sports, subscriptions, resellers, and buffering fixes.",
+  title: "channelmoa Blog | Practical IPTV Setup & Streaming Guides",
+  description: "Read original channelmoa guides for legal IPTV subscriptions, Smart TV, Android, Firestick, 4K, sports setup, resellers, and buffering diagnosis.",
   path: "/blog",
-  image: "/images/streaming-lifestyle.png"
+  image: "/images/streaming-lifestyle.webp"
 });
 
 export default function BlogIndexPage() {
   return (
     <>
-      <PageHero eyebrow="channelmoa IPTV blog" title="Helpful IPTV streaming guides for apps, packages, sports, VOD, and support" text="Browse practical channelmoa resources for legal IPTV streaming, device setup, subscription planning, 4K readiness, reseller operations, and troubleshooting." />
+      <PageHero eyebrow="channelmoa streaming knowledge base" title="Practical streaming guides for confident setup and better viewing" text="Explore original, rights-aware advice for choosing a service, preparing devices, diagnosing playback, planning 4K, and running responsible reseller operations." />
       <section className="section">
         <div className="container grid-3">
           {blogPosts.map((post) => <BlogCard post={post} key={post.slug} />)}

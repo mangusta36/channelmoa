@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/Sections";
-import { pageMetadata, siteConfig } from "@/lib/site";
+import Link from "next/link";
+import { pageMetadata, siteConfig, whatsappMessages, whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact channelmoa | Free Trial & IPTV Support",
-  description: "Contact channelmoa for a free IPTV trial, package help, app setup, Smart TV support, Firestick support, Android setup, and reseller details.",
+  description: "Contact channelmoa for a trial, package guidance, Smart TV, Android or Firestick setup support, app troubleshooting, and reseller information.",
   path: "/contact"
 });
 
@@ -14,13 +15,13 @@ export default function ContactPage() {
       <PageHero eyebrow="Contact channelmoa" title="Request a free IPTV trial or get channelmoa setup support" text="Tell us your device, preferred package, and streaming needs so channelmoa support can guide your legal IPTV setup." />
       <section className="section">
         <div className="container grid-2">
-          <form className="card form-grid">
+          <div className="card form-grid">
             <label>Name<input className="input" name="name" autoComplete="name" /></label>
             <label>Email<input className="input" name="email" type="email" autoComplete="email" /></label>
             <label>Device<input className="input" name="device" placeholder="Smart TV, Android, Firestick, iOS, Windows, MAG/Box" /></label>
             <label>Message<textarea className="textarea" name="message" placeholder="Tell us whether you need a free trial, package advice, app setup, or reseller details." /></label>
-            <button className="btn btn-primary" type="submit">Send Request</button>
-          </form>
+            <Link className="btn btn-primary" href={whatsappUrl(whatsappMessages.support)}>Contact Support</Link>
+          </div>
           <div>
             <h2>Support details</h2>
             <p>Email: {siteConfig.supportEmail}</p>

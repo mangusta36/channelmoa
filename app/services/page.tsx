@@ -6,7 +6,7 @@ import { canonical, pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa IPTV Services | Live TV, Sports, VOD & Support",
-  description: "Explore channelmoa IPTV services for legal live TV, sports, VOD, EPG, multi-device access, reseller panels, and 24/7 support.",
+  description: "Explore channelmoa IPTV services for legal live TV, sports, VOD, EPG, supported devices, reseller workflows, activation, and setup assistance.",
   path: "/services"
 });
 
@@ -18,7 +18,6 @@ export default function ServicesPage() {
     provider: { "@type": "Organization", name: "channelmoa" },
     url: canonical("/services"),
     serviceType: "Legal IPTV streaming service",
-    areaServed: "Worldwide",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "channelmoa IPTV service catalog",
@@ -32,6 +31,9 @@ export default function ServicesPage() {
       <PageHero eyebrow="channelmoa IPTV services" title="Legal IPTV live TV, sports, VOD, apps, and support" text="channelmoa combines licensed IPTV streaming access with helpful setup support, device guidance, EPG workflows, and reseller-friendly operations." />
       <section className="section">
         <div className="container">
+          <div className="section-head center">
+            <h2>channelmoa streaming services and setup support</h2>
+          </div>
           <ServiceGrid />
         </div>
       </section>

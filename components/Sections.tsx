@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Check, Headphones, MonitorSmartphone, ShieldCheck, Sparkles, Star, Tv, Zap } from "lucide-react";
 import { blogPosts } from "@/data/blog-data";
+import { blogPresentation } from "@/data/blog-expert-guides";
 import { devices, faqs, packages, services, stats, whyChoose } from "@/data/site-data";
+import { whatsappMessages, whatsappUrl } from "@/lib/site";
 
 export function Hero() {
   return (
@@ -27,7 +29,7 @@ export function Hero() {
           </h1>
           <p className="lead">Request a free trial, confirm your device setup, and start streaming with a premium IPTV platform backed by fast activation and real support.</p>
           <div className="hero-actions">
-            <Link className="btn btn-primary" href="/contact">Get Free Trial <ArrowRight size={18} /></Link>
+            <Link className="btn btn-primary hero-offer-btn" href={whatsappUrl(whatsappMessages.hero)}>Get 12 Months — 2 Months Free →</Link>
             <Link className="btn btn-hero-secondary" href="/packages">View Packages</Link>
           </div>
           <div className="trust-badges hero-trust-badges" aria-label="channelmoa trust signals">
@@ -148,7 +150,7 @@ export function DeviceCompatibility() {
           </ul>
         </div>
         <div className="image-panel">
-          <Image src="/images/device-compatibility.png" alt="Smart TV, phone, tablet, laptop, and streaming device showing channelmoa compatible IPTV apps" width={1200} height={800} />
+          <Image src="/images/device-compatibility.webp" alt="Smart TV, phone, tablet, laptop, and streaming device showing channelmoa compatible IPTV apps" width={1706} height={922} />
         </div>
       </div>
     </section>
@@ -187,7 +189,7 @@ export function PricingCards() {
               <li key={feature}><Check size={17} /> {feature}</li>
             ))}
           </ul>
-          <Link className={plan.featured ? "btn btn-primary" : "btn btn-secondary"} href="/contact">Get Started</Link>
+          <Link className={plan.featured ? "btn btn-primary" : "btn btn-secondary"} href={whatsappUrl(plan.whatsappMessage)}>Get Started</Link>
         </article>
       ))}
     </div>
@@ -208,12 +210,16 @@ export function FAQ({ items = faqs }: { items?: typeof faqs }) {
 }
 
 export function BlogCard({ post }: { post: (typeof blogPosts)[number] }) {
+  const presentation = blogPresentation[post.slug];
   return (
     <article className="blog-card">
-      <div className="meta"><BadgeCheck size={15} /> {post.readingTime} · {new Date(post.date).getFullYear()}</div>
+      <div className="blog-card-image">
+        <Image src={post.featuredImage || post.image} alt={post.featuredImageAlt || presentation.visualAlt} width={1200} height={800} sizes="(max-width: 680px) 100vw, (max-width: 1020px) 50vw, 33vw" />
+      </div>
+      <div className="meta"><BadgeCheck size={15} /> {presentation.topic} · {post.readingTime}</div>
       <h3>{post.title}</h3>
       <p>{post.description}</p>
-      <Link href={`/blog/${post.slug}`}>Read guide <ArrowRight size={15} /></Link>
+      <Link href={`/blog/${post.slug}`}>Read Guide <ArrowRight size={15} /></Link>
     </article>
   );
 }
@@ -235,7 +241,7 @@ export function CTASection() {
             <h2>Ready to test channelmoa IPTV on your device?</h2>
             <p>Request a free trial and include your device type so support can recommend the right setup path.</p>
           </div>
-          <Link className="btn btn-secondary" href="/contact">Get Free Trial</Link>
+          <Link className="btn btn-secondary" href={whatsappUrl(whatsappMessages.trial)}>Get Trial</Link>
         </div>
       </div>
     </section>

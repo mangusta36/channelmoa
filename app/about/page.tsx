@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "About channelmoa | Legal IPTV Streaming Platform",
-  description: "Learn about channelmoa, a legal IPTV streaming platform focused on live TV, sports, VOD, app compatibility, and helpful support.",
+  description: "Learn how channelmoa approaches legal IPTV streaming with clear packages, practical device guidance, responsible service, and helpful setup support.",
   path: "/about"
 });
 

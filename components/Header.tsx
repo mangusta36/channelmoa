@@ -4,13 +4,14 @@ import Link from "next/link";
 import { Headphones, Mail, Menu, Play, X, Zap } from "lucide-react";
 import { useState } from "react";
 import { navItems } from "@/data/site-data";
+import { siteConfig, whatsappMessages, whatsappUrl } from "@/lib/site";
 
 export function AnnouncementBar() {
   return (
     <div className="announcement">
       <span><Zap size={14} /> Free trial setup for new viewers</span>
       <span><Headphones size={14} /> 24/7 support every day</span>
-      <span><Mail size={14} /> support@channelmoa.com</span>
+      <span><Mail size={14} /> {siteConfig.supportEmail}</span>
     </div>
   );
 }
@@ -33,16 +34,17 @@ export function Header() {
         </nav>
         <div className="nav-actions">
           <Link className="btn btn-secondary" href="/packages">View Packages</Link>
-          <Link className="btn btn-primary" href="/contact">Get Free Trial</Link>
-          <button className="menu-toggle" type="button" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation">
+          <Link className="btn btn-primary" href={whatsappUrl(whatsappMessages.trial)}>Get Trial</Link>
+          <button className="menu-toggle" type="button" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation" aria-expanded={open} aria-controls="mobile-navigation">
             {open ? <X size={21} /> : <Menu size={21} />}
           </button>
         </div>
       </div>
-      <nav className={`mobile-nav ${open ? "open" : ""}`} aria-label="Mobile navigation">
+      <nav id="mobile-navigation" className={`mobile-nav ${open ? "open" : ""}`} aria-label="Mobile navigation">
         {navItems.map((item) => (
           <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>
         ))}
+        <Link className="mobile-trial-link" href={whatsappUrl(whatsappMessages.trial)} onClick={() => setOpen(false)}>Get Trial</Link>
       </nav>
     </header>
   );

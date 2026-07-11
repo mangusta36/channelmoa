@@ -28,10 +28,10 @@ export function Footer() {
           <div>
             <h3>Guides</h3>
             <div className="footer-links">
-              <Link href="/blog/best-iptv-service-2026">Best IPTV Service</Link>
-              <Link href="/blog/iptv-for-smart-tv">IPTV for Smart TV</Link>
-              <Link href="/blog/iptv-for-firestick">IPTV for Firestick</Link>
-              <Link href="/blog/fix-iptv-buffering">Fix IPTV Buffering</Link>
+              <Link href="/blog/legal-iptv-subscription-checklist-2026">Subscription Checklist</Link>
+              <Link href="/blog/smart-tv-iptv-setup-mistakes">Smart TV Setup</Link>
+              <Link href="/blog/firestick-iptv-setup-optimization">Firestick Optimization</Link>
+              <Link href="/blog/iptv-buffering-root-causes">Buffering Diagnosis</Link>
             </div>
           </div>
           <div>

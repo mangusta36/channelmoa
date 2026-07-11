@@ -3,8 +3,8 @@ import { CTASection, DeviceCompatibility, DeviceGrid, PageHero } from "@/compone
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "channelmoa IPTV App Guide | Smart TV, Android, Firestick & More",
-  description: "Set up channelmoa on supported devices with practical guidance, including help for viewers comparing moatv or a moa tv app.",
+  title: "channelmoa IPTV App Guide | TV, Android & Firestick",
+  description: "Set up channelmoa on Smart TV, Android, Firestick, iOS, Windows, and supported boxes with practical app, EPG, network, and playback guidance.",
   path: "/apps"
 });
 

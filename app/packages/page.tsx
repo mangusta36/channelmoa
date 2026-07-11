@@ -6,7 +6,7 @@ import { canonical, pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa IPTV Packages | IPTV Subscription Plans",
-  description: "Compare channelmoa IPTV subscription packages for 1, 6, 12, or 24 months of professional streaming access and guided setup.",
+  description: "Compare channelmoa IPTV packages for 3, 6, 12, or 24 months, with transparent pricing, supported devices, guided activation, and setup assistance.",
   path: "/packages"
 });
 
@@ -41,7 +41,7 @@ export default function PackagesPage() {
         <div className="container grid-2">
           <div>
             <h2>How to pick an IPTV subscription length</h2>
-            <p>The 1 Month Basic Package is useful for shorter-term access. The 6 Month Silver Package balances duration and value, while the 12 Month Gold Package fits regular viewers who prefer annual access. The 24 Month Diamond Package offers the strongest long-term price-to-access ratio.</p>
+            <p>The 3 Month Basic Package is useful for shorter-term access. The 6 Month Silver Package balances duration and value, while the 12 Month Gold Package fits regular viewers who prefer annual access. The 24 Month Diamond Package offers the strongest long-term price-to-access ratio.</p>
             <p>Before choosing, request a trial and share your main device. Support can help confirm Smart TV, Android, Firestick, iOS, Windows, or box compatibility. That practical check protects the viewing experience and keeps expectations clear.</p>
           </div>
           <FAQ />

@@ -7,9 +7,16 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" }
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }]
+  },
   ...pageMetadata({
     title: "channelmoa IPTV Streaming Platform | Live TV, Sports & VOD",
-    description: "channelmoa is a legal IPTV streaming platform for live TV, sports, VOD, apps, devices, packages, and IPTV reseller solutions.",
+    description: "Explore channelmoa legal IPTV streaming services, transparent packages, supported apps, device setup guidance, practical help, and reseller workflows.",
     path: "/"
   })
 };

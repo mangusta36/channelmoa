@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa Terms & Conditions | Legal IPTV Service Terms",
-  description: "Review channelmoa terms and conditions for legal IPTV streaming, subscriptions, app compatibility, support, acceptable use, and reseller inquiries.",
+  description: "Review channelmoa terms for responsible IPTV streaming, subscriptions, trials, compatible devices, customer support, acceptable use, and resellers.",
   path: "/terms-and-conditions"
 });
 

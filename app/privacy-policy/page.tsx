@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa Privacy Policy | IPTV Streaming Privacy",
-  description: "Read the channelmoa privacy policy for information about contact details, IPTV support requests, account communication, and website analytics.",
+  description: "Read how channelmoa handles contact details, device information, support requests, account communications, service records, and website analytics.",
   path: "/privacy-policy"
 });
 
