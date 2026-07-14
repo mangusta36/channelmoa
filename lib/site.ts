@@ -6,10 +6,10 @@ export const siteConfig = {
   description:
     "channelmoa is a legal IPTV streaming platform for live TV, sports, VOD, and multi-device entertainment.",
   supportEmail: "support@channelmoa.online",
-  supportPhone: "+44 7828714977"
+  supportPhone: "+212 753936672"
 };
 
-const whatsappNumber = "447828714977";
+const whatsappNumber = "212753936672";
 
 export const whatsappMessages = {
   hero: "Hello channelmoa, I want the 12 months offer with 2 months free. Please send me the details.",
