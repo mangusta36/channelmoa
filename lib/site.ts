@@ -64,11 +64,12 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.domain}/#organization`,
     name: siteConfig.name,
-    url: siteConfig.domain,
+    url: canonical(),
     email: siteConfig.supportEmail,
     telephone: siteConfig.supportPhone,
-    sameAs: [siteConfig.domain]
+    logo: canonical("/icon.png")
   };
 }
 
@@ -76,12 +77,46 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteConfig.domain}/#website`,
     name: siteConfig.name,
-    url: siteConfig.domain,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteConfig.domain}/blog?search={search_term_string}`,
-      "query-input": "required name=search_term_string"
-    }
+    url: canonical(),
+    publisher: { "@id": `${siteConfig.domain}/#organization` }
+  };
+}
+
+export function serviceJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteConfig.domain}/#service`,
+    name: "channelmoa IPTV subscription service",
+    serviceType: "Digital IPTV subscription service",
+    description: siteConfig.description,
+    url: canonical(),
+    provider: { "@id": `${siteConfig.domain}/#organization` }
+  };
+}
+
+export function webPageJsonLd({
+  path,
+  name,
+  description,
+  type = "WebPage"
+}: {
+  path: string;
+  name: string;
+  description: string;
+  type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+}) {
+  const url = canonical(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": `${url}#webpage`,
+    url,
+    name,
+    description,
+    isPartOf: { "@id": `${siteConfig.domain}/#website` },
+    about: { "@id": `${siteConfig.domain}/#organization` }
   };
 }

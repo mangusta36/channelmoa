@@ -37,6 +37,7 @@ export function Footer() {
           <div>
             <h3>Legal</h3>
             <div className="footer-links">
+              <Link href="/about">About channelmoa</Link>
               <Link href="/privacy-policy">Privacy Policy</Link>
               <Link href="/terms-and-conditions">Terms & Conditions</Link>
               <Link href="/contact">Support</Link>

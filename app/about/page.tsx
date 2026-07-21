@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CTASection, PageHero } from "@/components/Sections";
-import { pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, webPageJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "About channelmoa | Legal IPTV Streaming Platform",
@@ -11,6 +12,7 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={webPageJsonLd({ path: "/about", type: "AboutPage", name: "About channelmoa", description: "Learn how channelmoa approaches legal IPTV streaming with clear packages, practical device guidance, responsible service, and helpful setup support." })} />
       <PageHero eyebrow="About channelmoa" title="channelmoa makes legal IPTV streaming easier to understand and enjoy" text="channelmoa is built for viewers and resellers who want live TV, sports, VOD, device guidance, and support from one organized IPTV service provider." />
       <section className="section">
         <div className="container grid-2">

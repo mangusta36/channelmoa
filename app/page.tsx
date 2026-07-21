@@ -1,7 +1,7 @@
 import { BlogPreview, DeviceCompatibility, FAQ, Hero, PricingCards, ResellerBand, ServiceGrid, StatsStrip, WhyChoose } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
-import { faqs, packages } from "@/data/site-data";
-import { canonical } from "@/lib/site";
+import { faqs } from "@/data/site-data";
+import { serviceJsonLd, webPageJsonLd } from "@/lib/site";
 
 export default function HomePage() {
   const faqJsonLd = {
@@ -13,25 +13,15 @@ export default function HomePage() {
       acceptedAnswer: { "@type": "Answer", text: item.answer }
     }))
   };
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "channelmoa IPTV Subscription",
-    description: "Legal IPTV streaming service packages for live TV, sports, VOD, and multi-device access.",
-    brand: { "@type": "Brand", name: "channelmoa" },
-    offers: packages.map((plan) => ({
-      "@type": "Offer",
-      name: plan.name,
-      price: plan.price.replace("$", ""),
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-      url: canonical("/packages")
-    }))
-  };
+  const pageJsonLd = webPageJsonLd({
+    path: "/",
+    name: "channelmoa IPTV Streaming Platform | Live TV, Sports & VOD",
+    description: "Explore channelmoa legal IPTV streaming services, transparent packages, supported apps, device setup guidance, practical help, and reseller workflows."
+  });
 
   return (
     <>
-      <JsonLd data={[faqJsonLd, productJsonLd]} />
+      <JsonLd data={[pageJsonLd, serviceJsonLd(), faqJsonLd]} />
       <Hero />
       <section className="section pricing-section" id="packages">
         <div className="container">

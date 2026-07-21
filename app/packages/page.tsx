@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { CTASection, FAQ, PageHero, PricingCards } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
-import { packages } from "@/data/site-data";
-import { canonical, pageMetadata } from "@/lib/site";
+import { faqs } from "@/data/site-data";
+import { pageMetadata, serviceJsonLd, webPageJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa IPTV Packages | IPTV Subscription Plans",
@@ -11,26 +11,20 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function PackagesPage() {
-  const productJsonLd = {
+  const faqJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    name: "channelmoa IPTV Packages",
-    description: "IPTV subscription packages for live TV, sports, VOD, app support, and multi-device access.",
-    brand: { "@type": "Brand", name: "channelmoa" },
-    offers: packages.map((plan) => ({
-      "@type": "Offer",
-      name: plan.name,
-      description: plan.description,
-      price: plan.price.replace("$", ""),
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-      url: canonical("/packages")
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer }
     }))
   };
+  const pageJsonLd = webPageJsonLd({ path: "/packages", name: "channelmoa IPTV Packages", description: "Compare channelmoa IPTV packages for 3, 6, 12, or 24 months, with transparent pricing, supported devices, guided activation, and setup assistance." });
 
   return (
     <>
-      <JsonLd data={productJsonLd} />
+      <JsonLd data={[pageJsonLd, serviceJsonLd(), faqJsonLd]} />
       <PageHero eyebrow="IPTV subscription packages" title="Choose the channelmoa IPTV package that fits your viewing routine" text="Compare flexible legal IPTV streaming packages for live TV, sports, movies, series, VOD, EPG, and multi-device access." />
       <section className="section">
         <div className="container">

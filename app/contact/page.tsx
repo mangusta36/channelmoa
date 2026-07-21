@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/Sections";
+import { JsonLd } from "@/components/JsonLd";
 import Link from "next/link";
-import { pageMetadata, siteConfig, whatsappMessages, whatsappUrl } from "@/lib/site";
+import { pageMetadata, siteConfig, webPageJsonLd, whatsappMessages, whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact channelmoa | Free Trial & IPTV Support",
@@ -12,6 +13,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={webPageJsonLd({ path: "/contact", type: "ContactPage", name: "Contact channelmoa", description: "Contact channelmoa for a trial, package guidance, Smart TV, Android or Firestick setup support, app troubleshooting, and reseller information." })} />
       <PageHero eyebrow="Contact channelmoa" title="Request a free IPTV trial or get channelmoa setup support" text="Tell us your device, preferred package, and streaming needs so channelmoa support can guide your legal IPTV setup." />
       <section className="section">
         <div className="container grid-2">

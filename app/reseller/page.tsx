@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CTASection, PageHero } from "@/components/Sections";
-import { pageMetadata, whatsappUrl } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, webPageJsonLd, whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa IPTV Reseller Program | Business Guide",
@@ -12,6 +13,7 @@ export const metadata: Metadata = pageMetadata({
 export default function ResellerPage() {
   return (
     <>
+      <JsonLd data={webPageJsonLd({ path: "/reseller", name: "channelmoa IPTV Reseller Program", description: "Explore channelmoa IPTV reseller workflows for responsible customer onboarding, account operations, renewals, device setup, and support planning." })} />
       <PageHero eyebrow="IPTV reseller" title="Build an IPTV reseller business with channelmoa support workflows" text="channelmoa reseller options help businesses manage trials, packages, renewals, device questions, and customer support with a legal-first IPTV platform." />
       <section className="section">
         <div className="container grid-3">

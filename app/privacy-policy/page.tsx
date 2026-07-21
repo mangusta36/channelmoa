@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/Sections";
-import { pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, webPageJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa Privacy Policy | IPTV Streaming Privacy",
@@ -11,6 +12,7 @@ export const metadata: Metadata = pageMetadata({
 export default function PrivacyPolicyPage() {
   return (
     <>
+      <JsonLd data={webPageJsonLd({ path: "/privacy-policy", name: "channelmoa Privacy Policy", description: "Read how channelmoa handles contact details, device information, support requests, account communications, service records, and website analytics." })} />
       <PageHero eyebrow="Privacy Policy" title="channelmoa Privacy Policy" text="This policy explains how channelmoa handles information related to website visits, IPTV support requests, trials, packages, and customer communication." />
       <div className="article">
         <h2>Information we collect</h2>

@@ -49,19 +49,22 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${canonical(`/blog/${post.slug}`)}#article`,
     headline: post.title,
     description: post.description,
     image: canonical(post.featuredImage || post.image),
     datePublished: post.date,
-    dateModified: post.updated,
-    author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.domain },
-    publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.domain },
+    ...(post.updated !== post.date ? { dateModified: post.updated } : {}),
+    author: { "@type": "Organization", name: "channelmoa editorial team", url: canonical("/about") },
+    publisher: { "@id": `${siteConfig.domain}/#organization` },
+    isPartOf: { "@id": `${canonical("/blog")}#blog` },
     url: canonical(`/blog/${post.slug}`),
     mainEntityOfPage: canonical(`/blog/${post.slug}`)
   };
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${canonical(`/blog/${post.slug}`)}#faq`,
     mainEntity: post.faqs.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -78,7 +81,9 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
             <span className="eyebrow">{presentation.topic} · {post.readingTime}</span>
             <h1>{post.title}</h1>
             <p className="lead">{post.description}</p>
-            <div className="article-byline">Updated {new Date(post.updated).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })} · channelmoa editorial team</div>
+            <div className="article-byline">
+              {post.updated !== post.date ? "Updated" : "Published"} {new Date(post.updated).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })} · channelmoa editorial team
+            </div>
           </div>
         </section>
         <div className="article">

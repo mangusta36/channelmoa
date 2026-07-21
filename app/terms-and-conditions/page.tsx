@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/Sections";
-import { pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, webPageJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa Terms & Conditions | Legal IPTV Service Terms",
@@ -11,6 +12,7 @@ export const metadata: Metadata = pageMetadata({
 export default function TermsPage() {
   return (
     <>
+      <JsonLd data={webPageJsonLd({ path: "/terms-and-conditions", name: "channelmoa Terms & Conditions", description: "Review channelmoa terms for responsible IPTV streaming, subscriptions, trials, compatible devices, customer support, acceptable use, and resellers." })} />
       <PageHero eyebrow="Terms & Conditions" title="channelmoa Terms & Conditions" text="These terms outline responsible use of channelmoa IPTV services, packages, trials, app setup, support, and reseller communications." />
       <div className="article">
         <h2>Legal streaming use</h2>

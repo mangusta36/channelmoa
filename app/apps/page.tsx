@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CTASection, DeviceCompatibility, DeviceGrid, PageHero } from "@/components/Sections";
-import { pageMetadata } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, webPageJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa IPTV App Guide | TV, Android & Firestick",
@@ -11,6 +12,7 @@ export const metadata: Metadata = pageMetadata({
 export default function AppsPage() {
   return (
     <>
+      <JsonLd data={webPageJsonLd({ path: "/apps", name: "channelmoa IPTV App Guide", description: "Set up channelmoa on Smart TV, Android, Firestick, iOS, Windows, and supported boxes with practical app, EPG, network, and playback guidance." })} />
       <PageHero eyebrow="IPTV app setup" title="channelmoa IPTV apps for Smart TV, Android, Firestick, iOS, and Windows" text="Use channelmoa on supported IPTV apps with guided setup, device checks, EPG configuration, and practical playback tips." />
       <DeviceCompatibility />
       <section className="section">
