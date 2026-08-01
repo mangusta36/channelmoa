@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   ...pageMetadata({
     title: "channelmoa IPTV Streaming Platform | Live TV, Sports & VOD",
-    description: "Explore channelmoa legal IPTV streaming services, transparent packages, supported apps, device setup guidance, practical help, and reseller workflows.",
+    description: "Explore channelmoa streaming packages, supported apps, device setup guidance, practical troubleshooting, and reseller workflows.",
     path: "/"
   })
 };

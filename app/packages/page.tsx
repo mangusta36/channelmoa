@@ -25,7 +25,7 @@ export default function PackagesPage() {
   return (
     <>
       <JsonLd data={[pageJsonLd, serviceJsonLd(), faqJsonLd]} />
-      <PageHero eyebrow="IPTV subscription packages" title="Choose the channelmoa IPTV package that fits your viewing routine" text="Compare flexible legal IPTV streaming packages for live TV, sports, movies, series, VOD, EPG, and multi-device access." />
+      <PageHero eyebrow="IPTV subscription packages" title="Choose the channelmoa IPTV package that fits your viewing routine" text="Compare streaming package durations for live TV, sports, movies, series, VOD, and EPG access. Confirm current regional availability and the one-device rule before purchase." />
       <section className="section">
         <div className="container">
           <PricingCards />

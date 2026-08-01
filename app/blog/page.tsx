@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { BlogCard, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
-import { blogPosts } from "@/data/blog-data";
+import Link from "next/link";
+import { blogCategories, blogPosts, categorySlug } from "@/data/blog-data";
 import { canonical, pageMetadata, siteConfig, webPageJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa Blog | Practical IPTV Setup & Streaming Guides",
   description: "Read original channelmoa guides for legal IPTV subscriptions, Smart TV, Android, Firestick, 4K, sports setup, resellers, and buffering diagnosis.",
   path: "/blog",
-  image: "/images/streaming-lifestyle.webp"
+  image: "/images/streaming-lifestyle.webp",
+  imageWidth: 1536,
+  imageHeight: 1024,
+  imageAlt: "Viewer using a remote in a home streaming setup"
 });
 
 export default function BlogIndexPage() {
@@ -27,6 +31,9 @@ export default function BlogIndexPage() {
       <JsonLd data={[pageJsonLd, blogJsonLd]} />
       <PageHero eyebrow="channelmoa streaming knowledge base" title="Practical streaming guides for confident setup and better viewing" text="Explore original, rights-aware advice for choosing a service, preparing devices, diagnosing playback, planning 4K, and running responsible reseller operations." />
       <section className="section">
+        <nav className="container category-nav" aria-label="Blog categories">
+          {blogCategories.map((category) => <Link key={category} href={`/blog/category/${categorySlug(category)}`}>{category}</Link>)}
+        </nav>
         <div className="container grid-3">
           {blogPosts.map((post) => <BlogCard post={post} key={post.slug} />)}
         </div>

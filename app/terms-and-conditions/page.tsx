@@ -16,7 +16,7 @@ export default function TermsPage() {
       <PageHero eyebrow="Terms & Conditions" title="channelmoa Terms & Conditions" text="These terms outline responsible use of channelmoa IPTV services, packages, trials, app setup, support, and reseller communications." />
       <div className="article">
         <h2>Legal streaming use</h2>
-        <p>channelmoa is presented as a legal, licensed IPTV streaming platform. Users must not use channelmoa services for unauthorized access, infringement, circumvention, redistribution, or any unlawful streaming activity.</p>
+        <p>channelmoa presents its service for use with programming available under applicable rights and regional terms. This statement is first-party positioning, not an independent certification of licensing. Users must not use channelmoa services for unauthorized access, infringement, circumvention, redistribution, or any unlawful streaming activity.</p>
         <h2>Subscriptions and trials</h2>
         <p>Trial access is intended to verify device compatibility, app setup, network quality, EPG behavior, and overall service fit before selecting a package. Subscription availability, features, and pricing may change as the service evolves.</p>
         <h2>Device compatibility</h2>

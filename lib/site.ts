@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "channelmoa",
   domain: "https://www.channelmoa.online",
   description:
-    "channelmoa is a legal IPTV streaming platform for live TV, sports, VOD, and multi-device entertainment.",
+    "channelmoa presents IPTV packages, device guidance, setup support, and rights-aware information for live TV, sports, and VOD viewing.",
   supportEmail: "support@channelmoa.online",
   supportPhone: "+212 753936672"
 };
@@ -29,12 +29,24 @@ export function pageMetadata({
   title,
   description,
   path,
-  image = "/images/hero-streaming.webp"
+  image = "/images/home-live-sports-viewing.webp",
+  imageWidth = 1920,
+  imageHeight = 1080,
+  imageAlt,
+  type = "website",
+  publishedTime,
+  modifiedTime
 }: {
   title: string;
   description: string;
   path: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
 }): Metadata {
   const url = canonical(path);
   const imageUrl = canonical(image);
@@ -47,8 +59,9 @@ export function pageMetadata({
       description,
       url,
       siteName: siteConfig.name,
-      type: "website",
-      images: [{ url: imageUrl, width: 1200, height: 800, alt: title }]
+      type,
+      ...(type === "article" ? { publishedTime, modifiedTime } : {}),
+      images: [{ url: imageUrl, width: imageWidth, height: imageHeight, alt: imageAlt || `${siteConfig.name} streaming and device setup` }]
     },
     twitter: {
       card: "summary_large_image",

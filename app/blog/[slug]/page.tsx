@@ -23,8 +23,18 @@ export async function generateMetadata({ params }: BlogRouteProps): Promise<Meta
     title: post.seoTitle,
     description: post.description,
     path: `/blog/${post.slug}`,
-    image: post.ogImage || post.featuredImage || post.image
+    image: post.ogImage || post.featuredImage || post.image,
+    imageWidth: post.imageWidth || 1200,
+    imageHeight: post.imageHeight || 630,
+    imageAlt: post.featuredImageAlt,
+    type: "article",
+    publishedTime: post.date,
+    modifiedTime: post.updated
   });
+}
+
+function headingId(heading: string) {
+  return heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
 export default async function BlogPostPage({ params }: BlogRouteProps) {
@@ -33,18 +43,16 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
   if (!post) notFound();
   const presentation = blogPresentation[post.slug];
   const editorialAddition = blogEditorialAdditions[post.slug];
-  const articleSections = post.slug === "legal-iptv-subscription-checklist-2026"
-    ? post.sections.slice(0, 3)
-    : post.sections;
+  const articleSections = post.sections;
   const editorialParagraphLimits: Record<string, number> = {
     "moa-tv-app-setup-guide": 1,
     "iptv-login-watch-world-cup-guide": 2,
     "smart-tv-iptv-setup-mistakes": 4
   };
-  const editorialParagraphs = editorialAddition.paragraphs.slice(
+  const editorialParagraphs = editorialAddition?.paragraphs.slice(
     0,
     editorialParagraphLimits[post.slug] ?? editorialAddition.paragraphs.length
-  );
+  ) ?? [];
 
   const blogJsonLd = {
     "@context": "https://schema.org",
@@ -59,7 +67,19 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
     publisher: { "@id": `${siteConfig.domain}/#organization` },
     isPartOf: { "@id": `${canonical("/blog")}#blog` },
     url: canonical(`/blog/${post.slug}`),
-    mainEntityOfPage: canonical(`/blog/${post.slug}`)
+    mainEntityOfPage: canonical(`/blog/${post.slug}`),
+    articleSection: post.category || presentation?.topic,
+    ...(post.primaryKeyword || post.secondaryKeywords?.length ? { keywords: [post.primaryKeyword, ...(post.secondaryKeywords || [])].filter(Boolean).join(", ") } : {})
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${canonical(`/blog/${post.slug}`)}#breadcrumb`,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: canonical("/") },
+      { "@type": "ListItem", position: 2, name: "Blog", item: canonical("/blog") },
+      { "@type": "ListItem", position: 3, name: post.title, item: canonical(`/blog/${post.slug}`) }
+    ]
   };
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -74,32 +94,56 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
 
   return (
     <>
-      <JsonLd data={[blogJsonLd, faqJsonLd]} />
+      <JsonLd data={[blogJsonLd, breadcrumbJsonLd, ...(post.faqs.length ? [faqJsonLd] : [])]} />
       <article>
+        <nav className="breadcrumbs container" aria-label="Breadcrumb">
+          <ol>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/blog">Blog</Link></li>
+            <li aria-current="page">{post.title}</li>
+          </ol>
+        </nav>
         <section className="page-hero">
           <div className="container">
-            <span className="eyebrow">{presentation.topic} · {post.readingTime}</span>
+            <span className="eyebrow">{post.category || presentation?.topic} · {post.readingTime}</span>
             <h1>{post.title}</h1>
             <p className="lead">{post.description}</p>
             <div className="article-byline">
-              {post.updated !== post.date ? "Updated" : "Published"} {new Date(post.updated).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })} · channelmoa editorial team
+              {post.updated !== post.date ? "Updated" : "Published"} {new Date(post.updated).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })} · channelmoa editorial team
             </div>
+            <p className="article-editorial-note">Published by the channelmoa editorial team. {post.disclosure || "This article provides general streaming setup guidance and distinguishes device or regional variables where they apply."}</p>
           </div>
         </section>
         <div className="article">
           <figure className="article-featured-image">
-            <Image src={post.featuredImage || post.image} alt={post.featuredImageAlt || presentation.visualAlt} width={1200} height={800} sizes="(max-width: 900px) calc(100vw - 32px), 860px" priority />
-            <figcaption>{presentation.visualLabel}</figcaption>
+            <Image src={post.featuredImage || post.image} alt={post.featuredImageAlt || presentation?.visualAlt} width={post.imageWidth || 1200} height={post.imageHeight || 630} sizes="(max-width: 900px) calc(100vw - 32px), 860px" priority />
+            {presentation?.visualLabel ? <figcaption>{presentation.visualLabel}</figcaption> : null}
           </figure>
+          {post.tableOfContents?.length ? (
+            <nav className="article-toc" aria-label="Table of contents">
+              <h2>Table of contents</h2>
+              <ol>{articleSections.map((section) => <li key={section.heading}><a href={`#${headingId(section.heading)}`}>{section.heading}</a></li>)}</ol>
+            </nav>
+          ) : null}
+          {post.comparisonTable ? (
+            <div className="article-table-wrap">
+              <table>
+                <caption>{post.comparisonTable.caption}</caption>
+                <thead><tr>{post.comparisonTable.headers.map((header) => <th key={header} scope="col">{header}</th>)}</tr></thead>
+                <tbody>{post.comparisonTable.rows.map((row) => <tr key={row[0]}>{row.map((cell, index) => index === 0 ? <th key={cell} scope="row">{cell}</th> : <td key={cell}>{cell}</td>)}</tr>)}</tbody>
+              </table>
+            </div>
+          ) : null}
           {articleSections.map((section) => (
             <section key={section.heading}>
-              <h2>{section.heading}</h2>
+              <h2 id={headingId(section.heading)}>{section.heading}</h2>
               {section.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.image ? <Image className="article-inline-image" src={section.image.src} alt={section.image.alt} width={section.image.width} height={section.image.height} sizes="(max-width: 900px) calc(100vw - 32px), 860px" /> : null}
               <h3>{section.subheading}</h3>
               {section.details.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </section>
           ))}
-          <section className="expert-guide">
+          {presentation ? <section className="expert-guide">
             <h2>{presentation.expertHeading}</h2>
             <p>{presentation.expertIntro}</p>
             {presentation.items.map((item, index) => (
@@ -112,11 +156,15 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
                 </div>
               </div>
             ))}
-          </section>
-          <section>
+          </section> : null}
+          {editorialAddition ? <section>
             <h2>{editorialAddition.heading}</h2>
             {editorialParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-          </section>
+          </section> : null}
+          {post.references?.length ? <section>
+            <h2>Sources and further reading</h2>
+            <ul className="article-links">{post.references.map((item) => <li key={item.href}><a href={item.href} target="_blank" rel="noreferrer">{item.label}</a></li>)}</ul>
+          </section> : null}
           <section>
             <h2>Related channelmoa resources</h2>
             <ul className="article-links">

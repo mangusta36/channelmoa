@@ -10,14 +10,34 @@ export type BlogPost = {
   featuredImage: string;
   featuredImageAlt: string;
   ogImage: string;
-  sections: { heading: string; intro: string[]; subheading: string; details: string[] }[];
+  imageWidth?: number;
+  imageHeight?: number;
+  category?: string;
+  excerpt?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+  tableOfContents?: string[];
+  comparisonTable?: { caption: string; headers: string[]; rows: string[][] };
+  references?: { label: string; href: string }[];
+  disclosure?: string;
+  sections: {
+    heading: string;
+    intro: string[];
+    subheading: string;
+    details: string[];
+    image?: { src: string; alt: string; width: number; height: number };
+  }[];
   relatedLinks: { label: string; href: string }[];
   cta: { heading: string; text: string };
   faqs: { question: string; answer: string }[];
 };
 
+import { newBlogPosts } from "@/data/blog-new-posts";
+import { improvedBlogPosts } from "@/data/blog-improved-posts";
+
 const published = "2026-07-10";
-export const blogPosts: BlogPost[] = [
+const originalBlogPosts: BlogPost[] = [
+  ...newBlogPosts,
   {
     slug: "legal-iptv-subscription-checklist-2026",
     title: "Legal IPTV Subscription Checklist 2026: What to Check Before You Buy",
@@ -26,10 +46,19 @@ export const blogPosts: BlogPost[] = [
     date: published,
     updated: published,
     readingTime: "12 min read",
-    image: "/images/blog/legal-iptv-checklist.webp",
-    featuredImage: "/images/blog/legal-iptv-checklist.webp",
-    featuredImageAlt: "Legal IPTV subscription checklist covering terms, device readiness, support expectations, and renewal planning",
-    ogImage: "/images/blog/legal-iptv-checklist.webp",
+    image: "/images/blog/legal-streaming-subscription-review.webp",
+    featuredImage: "/images/blog/legal-streaming-subscription-review.webp",
+    featuredImageAlt: "Customer comparing streaming subscription documents beside a television, router, and streaming box",
+    ogImage: "/images/blog/legal-streaming-subscription-review.webp",
+    tableOfContents: [
+      "Start with proof, not a channel count",
+      "Match the subscription to the screen you actually use",
+      "Compare price, activation, and support as one package",
+      "Check the legal and payment safety layer before you pay",
+      "Review the EPG, VOD experience, and first-week usage",
+      "Use a pre-purchase checklist before you commit",
+      "Turn the checklist into a real decision record"
+    ],
     sections: [
       {
         heading: "Start with proof, not a channel count",
@@ -120,356 +149,15 @@ export const blogPosts: BlogPost[] = [
           "Imagine a first-time buyer who wants a legal IPTV subscription for a Smart TV and a phone. The buyer writes down the exact TV model, the app name, the support contact path, and the first test date. That simple record creates a concrete standard for follow-up and helps the buyer compare the service with other options in a fair way.",
           "The point is not to overcomplicate the purchase. It is to make the decision measurable enough that the buyer can tell whether the service actually met the expectations that led to the purchase in the first place."
         ]
-      },
-      {
-        heading: "Network stress-testing plan for event readiness",
-      intro: [
-        "Simulate event conditions by running a stress test: stream a high-bitrate sample, start a concurrent download on another device, and measure latency and packet loss at the playback device. This controlled test reveals whether your connection has true headroom for the big match rather than relying on a single speed test result.",
-        "Repeat the test at the same time the event will occur because local congestion patterns can change dramatically by hour."
-      ],
-      subheading: "How to run a repeatable stress test",
-      details: [
-        "Play a known high-bitrate clip for thirty minutes while a second device performs a modest download to simulate household use.",
-        "Record throughput and packet loss tools near the playback device; if packet loss appears, focus on the wireless design or provider route rather than the app.",
-        "If results are marginal, prioritize Ethernet or a different viewing time rather than hastily changing app settings on game day."
-      ]
-    },
-    {
-      heading: "Responsible streaming preparation checklist (concise)",
-      intro: [
-        "Responsible streaming reduces risk and preserves account health: avoid sharing credentials publicly, use official apps and support routes, test before the event, and remove account access from borrowed devices after use. This checklist protects both your account and the continuity of the viewing experience.",
-        "A short, written checklist is the best defense against last-minute chaos."
-      ],
-      subheading: "Concise pre-match checklist",
-      details: [
-        "Confirm authorized coverage for your account and location.",
-        "Test sign-in and playback on the main device and a backup.",
-        "Check Ethernet fallback and have support contact ready with device details and timestamps."
-      ]
-    },
-    {
-      heading: "EPG refresh guidance and timing patterns",
-      intro: [
-        "An EPG refresh may be immediate or scheduled by the provider. If a guide appears offset or incomplete, check whether the provider lists a recommended refresh interval. Avoid manual repeated refreshes which can overload local storage and create accidental data duplication. Instead, perform a single refresh and observe results for several minutes.",
-        "Time zone mismatch is a frequent hidden cause. Double-check the device clock, daylight-saving settings, and the app's EPG timezone offset before concluding the feed is broken."
-      ],
-      subheading: "When to refresh and when to wait",
-      details: [
-        "Perform a single refresh after correcting the clock and wait five minutes for data to populate.",
-        "If the provider recommends a specific EPG source or offset, apply those settings exactly and document them for future support requests.",
-        "If repeated refreshes show partial data, capture a screenshot of the EPG source and include it with your support message."
-      ]
-    },
-    {
-      heading: "Platform differences: Smart TV vs Android box vs Firestick",
-      intro: [
-        "Each platform has characteristic strengths: Smart TVs offer a single integrated device with limited storage; Android boxes provide flexible hardware choices and codec support; Firesticks emphasize remote-friendly UI and ease of purchase. Match your priority (simplicity, performance, or remote usability) to the platform when choosing how to deploy a provider's app.",
-        "Understanding the platform differences before purchase reduces surprises and improves long-term satisfaction."
-      ],
-      subheading: "Decision guidance by priority",
-      details: [
-        "Simplicity: choose Smart TV if you prefer minimal hardware, but expect storage and remote navigation limits.",
-        "Performance: choose an Android box with sufficient RAM and a stable power supply when decoder flexibility and cooling matter.",
-        "Usability: choose Firestick for remote-first apps and predictable ecosystem updates; test whether the app's menu is remote-friendly before committing."
-      ]
-    },
-    {
-      heading: "EPG and VOD quality checklist — technical verification",
-      intro: [
-        "Inspect EPG quality beyond presence: check whether program titles, start times, and descriptions match the broadcaster's schedule. Confirm whether categories and search metadata behave as expected. For VOD, verify resume points, subtitle availability, and whether episode numbering matches the guide. These signals reveal whether the backend metadata pipeline and mapping are healthy.",
-        "A mismatch between advertised content and guide entries can indicate a mapping error or a delayed feed rather than a general playback fault. Document specific mismatches and sample timestamps for support before requesting a broad reset."
-      ],
-      subheading: "Verification steps",
-      details: [
-        "Pick three representative items: one live, one series episode, and one short-form VOD. Confirm titles, start times, synopsis, and whether the VOD resumes to the correct offset.",
-        "If subtitles are advertised, check their presence and sync; if missing, attach the content ID and time window when reporting to support.",
-        "Note whether category browsing and search return the expected results in the same app; differences between categories often point to metadata ingestion issues."
-      ]
-    },
-    {
-      heading: "Payment, dispute, and refund practical steps",
-      intro: [
-        "When a purchase does not deliver as expected, a measured approach to dispute resolution preserves options. First gather documentation: transaction ID, order page screenshot (without credentials), activation confirmation, and any support correspondence. This record speeds both your payment provider's research and a reseller or provider's internal review.",
-        "Prefer payment methods that provide straightforward dispute tools and receipts. Where direct chargebacks are used, follow the provider's documented refund policy first to avoid unnecessary escalation."
-      ],
-      subheading: "A pragmatic dispute workflow",
-      details: [
-        "Step 1 — Contact the provider with the evidence and request a resolution window.",
-        "Step 2 — If the provider does not respond within the stated window, contact your payment provider with the documented evidence.",
-        "Step 3 — Maintain polite, timestamped records of every contact; this summary is often decisive in refunds or remediations."
-      ]
-    },
-    {
-      heading: "Buyer decision checklist — compare like with like",
-      intro: [
-        "A concise checklist helps weigh two offers concretely. Compare the activation path, device guidance, support hours and response target, renewal clarity, simultaneous-stream rules, and a short first-week follow-up promise. Use the checklist to score each provider and prefer repeatable evidence over marketing claims.",
-        "The goal is to convert impressions into specific, measurable differences that align with the household's priorities."
-      ],
-      subheading: "Checklist items",
-      details: [
-        "Activation window and documented first-login steps.",
-        "Device compatibility with the exact model you own and a recommended player.",
-        "Support contact options and average response times during your viewing hours.",
-        "Renewal and refund conditions and where transactional receipts come from."
-      ]
-    },
-    {
-      heading: "Real-world comparison examples",
-      intro: [
-        "Two households with different priorities will choose differently: a small studio that streams on a phone values simple login and flexible device switching; a family room values remote-friendly navigation and a reliable first-hour setup. Below are examples showing how the checklist yields distinct choices.",
-        "These examples illustrate that the best service depends on the actual viewing pattern more than on a headline channel count."
-      ],
-      subheading: "Example scenarios",
-      details: [
-        "Studio renter: prioritizes a short-term plan, mobile-first login, and the ability to cast to a secondary TV. They choose the service with a clear mobile login flow and easy cancellation.",
-        "Family home: prioritizes a remote-friendly app, a tested first login on the living-room TV, and a responsive support path during evenings. They pick the provider that documents the player and offers a first-week check-in."
-      ]
-    },
-    {
-      heading: "Sample customer support scripts for common cases",
-      intro: [
-        "Short, tested scripts speed resolution. Below are concise templates a reseller can use to gather evidence or escalate. Use them as starting points and adapt to your tone and legal constraints.",
-        "Each script guides the customer to gather the minimum set of facts that make a support team productive without exposing credentials or unnecessary personal data."
-      ],
-      subheading: "Script templates",
-      details: [
-        "Invalid login: 'Please tell me the device model, app name and version, exact error text, and whether you can test the same credentials on a phone or PC.'",
-        "Buffering: 'Please confirm whether Ethernet works, run a speed/latency test near the TV at the time of the issue, and note whether other services also slow down.'",
-        "No guide data: 'Confirm the device clock and timezone, then attempt an EPG refresh and report whether any channels appear.'",
-        "Escalation note: 'We have attempted X, Y, Z. Please escalate with the attached timestamps, device details, and the customer's consent to check account logs.'"
-      ]
-    },
-    {
-      heading: "Operational onboarding checklist for new resellers",
-      intro: [
-        "A reproducible onboarding process reduces deployment errors. The checklist below covers legal, technical, and customer-facing items that matter in the first month of operations.",
-        "Completing these items creates a minimal operational foundation a reseller can build on as volumes grow."
-      ],
-      subheading: "Core onboarding items",
-      details: [
-        "Confirm provider terms, supported territories, and allowed promotional language.",
-        "Set up a secure customer ledger, template activation messages, and a private test account for diagnostics.",
-        "Document the support escalation path and test it at least once with channelmoa or upstream support.",
-        "Define refund and exit procedures and ensure they are easy to apply consistently."
-      ]
-    },
-    {
-      heading: "A realistic 4K bandwidth calculator and test plan",
-      intro: [
-        "Rather than trusting a single published number, estimate headroom: measure the sustained bitrate of a known 4K sample, add 25–40% headroom for household variation, and include concurrent device needs. For example, if the observed sustained bitrate is 25 Mbps, plan for at least 35 Mbps reserved to avoid interruptions when other devices become active.",
-        "Run the same sample for thirty minutes during peak household hours to observe sustained behavior rather than short spikes. Use Ethernet when possible for precise measurement and repeat the test after a typical household activity like a large download."
-      ],
-      subheading: "Test steps",
-      details: [
-        "Select a known 4K title or the provider's 4K sample and stream for thirty minutes while recording throughput.",
-        "Add 25–40% to the observed average to create a practical headroom figure.",
-        "Compare the headroom number to your contracted plan and consider whether a router or Wi-Fi improvement will solve problems before upgrading the plan."
-      ]
-    },
-    {
-      heading: "HDMI, receiver, and display checklist for stable 4K",
-      intro: [
-        "Confirm every element in the playback chain supports the required resolution and HDR mode. Receivers can downscale, re-encode, or change timing during passthrough. Test the player directly into the TV and then with the receiver to isolate where a handshake or color issue appears.",
-        "Keep HDMI cables modestly rated for the required bandwidth and test different inputs to see whether a single input causes instability. A well-documented checklist avoids replacing components without evidence."
-      ],
-      subheading: "Checklist items",
-      details: [
-        "Confirm the TV input supports the expected 4K mode and enhanced HDCP settings if used.",
-        "Test a direct connection to the TV and then a connection via the receiver to compare behavior.",
-        "Note whether HDR vs SDR changes the result; if HDR fails, test SDR first to separate color-handling faults from bandwidth or decoder faults."
-      ]
-    },
-    {
-      heading: "A step-by-step troubleshooting tree",
-      intro: [
-        "Create a short decision tree that moves from low-effort checks to deeper diagnostics. This tree prevents repeated random fixes and preserves evidence for support escalation. Begin with local device checks, progress to Wi-Fi vs Ethernet, then compare another device, and finally collect timestamps for potential upstream investigation.",
-        "A decision tree also helps non-technical household members run useful tests without altering complex router or device settings. Keep one visible copy in a notes app or printed near the TV."
-      ],
-      subheading: "Simple actionable tree",
-      details: [
-        "Step 1 — Does the issue happen on one device only? If yes, focus on app, storage, or device temperature.",
-        "Step 2 — If multiple devices fail, switch the main TV to Ethernet for a quick test. If Ethernet passes, improve Wi-Fi design.",
-        "Step 3 — If all devices fail and Ethernet fails, record times and content for support and check for ISP or route-level symptoms."
-      ]
-    },
-    {
-      heading: "ISP routing and peak-time testing methodology",
-      intro: [
-        "Understanding ISP routing requires pattern recording: note time, affected content item, and whether other internet services (web, game, video call) show degradation. Reproduce tests across several evenings to identify consistent patterns before concluding the problem is upstream.",
-        "If multiple users report degradation only at certain hours, gather samples and contact both the ISP and the provider with timestamps. The combination of customer-side tests and professional logs gives the clearest path to resolution."
-      ],
-      subheading: "How to collect useful routing evidence",
-      details: [
-        "Run three speed and latency tests at the device during the problem and save results.",
-        "Record the exact stream item, app version, and timestamp; repeat the same item on another device where possible.",
-        "If you see consistent evening drops across services, report the times and attach the saved test results to your ISP and provider ticket."
-      ]
-    },
-    {
-      heading: "Display settings and HDMI troubleshooting",
-      intro: [
-        "A black or unstable picture on playback is often an HDMI handshake or display mode issue rather than a network or account failure. Check the TV input's enhanced mode, try a known-good HDMI cable, and confirm the Firestick's output resolution matches the display. If available, test the stick in another input to rule out the receiver or switch.",
-        "If HDR or variable refresh options are available, start with standard dynamic range and the native resolution for troubleshooting. These conservative settings reduce variables when isolating the fault."
-      ],
-      subheading: "Handshake and resolution checks",
-      details: [
-        "Try a different HDMI cable or a direct TV input to exclude a receiver or switch.",
-        "Set output to a fixed resolution rather than auto-detect while testing.",
-        "Test a short VOD clip in the same resolution as the suspected failing live content to see whether the problem is source-specific."
-      ]
-    },
-    {
-      heading: "Remote-friendly app usage and accessibility",
-      intro: [
-        "A remote-friendly player matters for everyday use. Test whether the app allows easy text entry with the remote, predictable back-button behavior, and submenu access without a touchscreen. Accessibility options like closed captions and audio descriptions should be reachable without multiple nested menus.",
-        "Design the on-sofa experience by prefilling favorites and shortcuts so guests can follow a simple path to the live guide rather than navigating complex menus."
-      ],
-      subheading: "Practical remote tips",
-      details: [
-        "Create a favorites row and document how to access it from the remote's main screen.",
-        "Test voice remote entry for the app if available, but keep a manual fallback path for accuracy.",
-        "Avoid installing multiple similar players on a single stick; one supported app reduces confusion and potential session conflicts."
-      ]
-    },
-    {
-      heading: "Hardware decoding and thermal management",
-      intro: [
-        "Hardware decoding generally provides lower CPU usage and better battery life, but support differs by SoC, codec, and app. If the player offers a hardware/software decode toggle, test both modes with a repeatable clip and monitor frame drops and temperature. A box that overheats may throttle and degrade playback quality over time.",
-        "Thermal design matters: place the box in open air, avoid stacking devices, and use the recommended adapter. If playback quality drops after warm-up, prioritize cooling and consider a ventilated shelf or a modest external fan rather than immediate hardware replacement."
-      ],
-      subheading: "Testing for decoder problems",
-      details: [
-        "Run the same sample for at least twenty minutes to reveal thermal or long-session issues.",
-        "Compare hardware and software decoding modes and record whether audio sync drifts or frames drop more in one mode.",
-        "If hardware decoding fails on one codec but software works, prefer an alternative quality that preserves stability rather than pushing the device beyond its capabilities."
-      ]
-    },
-    {
-      heading: "Router placement and Ethernet fallback plan",
-      intro: [
-        "Router placement can be the difference between a stable viewing experience and intermittent buffering. Place the router centrally, avoid metal obstructions, and minimize overlapping channels with neighboring networks. When in doubt, wire the primary streaming device and use Wi-Fi only for secondary screens.",
-        "Create a simple Ethernet fallback plan: keep a short cable and a visible input port so you can perform a quick diagnostic swap if evening buffering appears. The fallback does not need to be permanent; it's a rapid test that isolates wireless issues from other causes."
-      ],
-      subheading: "Practical placement tips",
-      details: [
-        "Keep the router off the floor and away from large appliances; place it at chest height where possible.",
-        "Use 5 GHz for near devices and 2.4 GHz for longer-range needs, but test both during busy hours to see which holds up better.",
-        "Consider band steering and mesh backhaul quality when evaluating a long-run improvement; a poorly configured mesh can create worse performance than a single well-placed access point."
-      ]
-    },
-    {
-      heading: "TV storage, thumbnails, and hidden data",
-      intro: [
-        "Smart TVs often allocate small reserved partitions for system and app data. Over time, thumbnails, metadata, and temporary EPG files can accumulate in ways that are not obvious to a user. Freeing space requires targeted cleanup: remove large unused apps, clear app caches selectively, and remove unused user profiles where supported.",
-        "If the TV lacks explicit cache tools, an OS update or factory reset may be the only option—but those steps are disruptive. Prefer targeted cleanup where possible and document the resulting free space to confirm improvement."
-      ],
-      subheading: "How to reclaim useful space safely",
-      details: [
-        "Uninstall apps you do not use and move any movable media to external storage when supported.",
-        "Some TVs allow clearing thumbnails or guide caches from within the system settings—use these options before factory resets.",
-        "If only a full reset restores performance, export any supported settings and have your channelmoa activation details available to sign in again."
-      ]
-    },
-    {
-      heading: "OS and app update pitfalls—when to delay and when to apply",
-      intro: [
-        "Updates fix many issues but sometimes change app behavior. Delay non-critical updates until after a rehearsal for a major event. For critical security or certificate fixes, apply promptly, but anticipate a short period for caches to rebuild and for a provider's EPG to resynchronize.",
-        "If an update coincides with a new issue, document the app and OS versions so support can correlate events. Avoid applying multiple updates at once when diagnosing a problem."
-      ],
-      subheading: "Rollback mindset and evidence preservation",
-      details: [
-        "Record the exact OS and app version before updating so you can report the change if the issue starts after the update.",
-        "If the vendor supports rollbacks, apply them only when you can test an immediate improvement; otherwise, escalate with version evidence.",
-        "Keep a small log of step changes so you or support can identify which change created the regression."
-      ]
-    },
-    {
-      heading: "Support timing advice and escalation plan",
-      intro: [
-        "Support availability matters on match day. If your provider offers limited business hours, schedule your rehearsal inside their covered window. If support is 24/7, ask whether sports-event traffic changes response expectations and whether there is a priority path for activations or event failures.",
-        "Create a short escalation plan: who to contact first (chat, email, phone), what information to include (device, app, exact time), and when to switch to a backup device. That planning keeps the first minutes of a playback issue focused and efficient."
-      ],
-      subheading: "What to include in the event report",
-      details: [
-        "Device model, app and version, connection type, and whether other internet services work.",
-        "Exact timestamp of the failure and the exact symptom (buffering, black screen, invalid account message).",
-        "Which fallback was attempted and its outcome; this helps determine whether the issue is device- or route-specific."
-      ]
-    },
-    {
-      heading: "Quick-switch backup device checklist",
-      intro: [
-        "A backup device that is untested is not a real backup. Test and document one alternative screen: confirm it signs in with the same account type, loads the guide, and plays a sample stream. Keep the device powered and updated during major events so it can be swapped in quickly.",
-        "Label any adapters and the correct input on your TV or receiver so anyone in the household can switch without guessing which port or HDMI input to use." 
-      ],
-      subheading: "Fast swap steps",
-      details: [
-        "Keep the backup device on the same account method and a noted input; test it the day before the event.",
-        "Keep a short note with the app name and login format in a visible place so a guest can use it without asking for passwords.",
-        "If the backup uses Ethernet, connect its cable near the main TV so switching is a matter of changing input rather than re-cabling under pressure."
-      ]
-    },
-    {
-      heading: "Device preparation checklist — what to do five minutes before installation",
-      intro: [
-        "Before you open the app store, do five quick system checks: update the OS, free at least 10–15% storage, confirm the system time and timezone, attach power to recommended adapter, and ensure the remote control enters text accurately. Those checks remove many common startup errors and make the first login meaningful.",
-        "If you have a choice, connect temporarily by Ethernet and run a simple 10-minute playback test at the same time you usually watch. That rehearsal exposes evening congestion or other household traffic that a daytime check would miss."
-      ],
-      subheading: "Practical quick steps",
-      details: [
-        "Update the OS and restart the device to apply background fixes.",
-        "Remove unused apps and take a storage snapshot for later reference.",
-        "Set the device clock to automatic and confirm the timezone, which affects the EPG and scheduled events.",
-        "If possible, plug in Ethernet for the initial test, then revert to Wi-Fi only if that better matches real usage."
-      ]
-    },
-    {
-      heading: "Common login mistakes and a recovery workflow",
-      intro: [
-        "Users frequently mix up portal URLs, username/password formats, and device codes. A short recovery workflow reduces wasted reinstalls: verify the expected login type, test the credentials on a phone or PC where typing is easier, confirm account active status with support, then retry on the TV. Only clear app data if you are ready to re-enter credentials.",
-        "A stepwise recovery approach preserves evidence for support and reduces the chance of losing saved favorites or diagnostic context. It also avoids repeated restores that create more complexity than they solve."
-      ],
-      subheading: "Recovery steps in order",
-      details: [
-        "Step 1 — Check the exact login method (username/password, portal address, or device code).",
-        "Step 2 — Try the credentials on a device with easier text entry and capture any exact error message.",
-        "Step 3 — If an invalid-login appears, confirm account status with channelmoa support before changing settings.",
-        "Step 4 — Restart the app and device; clear cache only if the problem persists; clear data and reinstall only as a final step."
-      ]
-    },
-    {
-      heading: "Vendor trust signals — a practical vetting flow",
-      intro: [
-        "Treat provider vetting like a lightweight compliance checklist. Confirm the company name, payment recipient, support email/phone, published terms, and a privacy statement. If possible, verify the business address and a working domain that matches the brand used in support messages. These simple checks separate an organized operator from one that changes names frequently.",
-        "Ask for a short description of the activation process and an approximate time window. Cross-check that description against the package detail you received in writing. If activation depends on manual steps by human staff, clarify the expected response time and a fallback if activation is delayed beyond that window."
-      ],
-      subheading: "A three-step vetting routine",
-      details: [
-        "Step 1 — Verify public presence: look for a consistent domain, public legal pages, and a support contact that responds with non-generic details.",
-        "Step 2 — Confirm payment traceability: ensure the payment method provides a receipt and that the recipient name aligns with the brand or registered business.",
-        "Step 3 — Ask for a documented activation path: the provider should outline which app, which login format, what to test first, and how long activation typically takes. If the provider cannot answer these practical questions, treat that as a risk factor."
-      ]
-    },
-    {
-      heading: "Sample pre-purchase walk-through for a first-time buyer",
-      intro: [
-        "A short staged example helps buyers apply the checklist in the moment. The following walk-through shows the minimal steps a cautious household can take before committing to a longer term.",
-        "This is intentionally conservative: a single short plan mitigates many common surprises while keeping the process fast and repeatable."
-      ],
-      subheading: "Walk-through steps",
-      details: [
-        "Step A — Record your main TV model, OS version, and whether it has an external HDMI input free for a box.",
-        "Step B — Ask the provider which player and login format are used, request an activation window, and confirm simultaneous-stream rules.",
-        "Step C — Run a 20-minute rehearsal on a short term plan or trial using the exact device, then note any navigation or guide problems before renewing for a longer term.",
-        "Step D — If the rehearsal passes, document the working configuration and the support route; if not, request a corrective action from support or test the backup device before deciding."
-      ]
-    },
+      }
     ],
     relatedLinks: [
       { label: "Compare channelmoa packages", href: "/packages" },
+      { label: "Compare channelmoa with other providers using documented evidence", href: "/blog/channelmoa-vs-generic-iptv-services" },
       { label: "Review supported apps and devices", href: "/apps" },
       { label: "Understand channelmoa streaming services", href: "/services" },
       { label: "Diagnose buffering before subscribing", href: "/blog/iptv-buffering-root-causes" },
+      { label: "Plan a supportable streaming reseller operation", href: "/blog/iptv-reseller-business-starter-guide" },
       { label: "Contact channelmoa support", href: "/contact" }
     ],
     cta: { heading: "Choose a plan after the checks are complete", text: "Share your device and viewing needs with channelmoa, confirm compatibility, and then select the subscription term that fits." },
@@ -488,10 +176,10 @@ export const blogPosts: BlogPost[] = [
     date: published,
     updated: published,
     readingTime: "12 min read",
-    image: "/images/blog/moa-tv-app-setup.webp",
-    featuredImage: "/images/blog/moa-tv-app-setup.webp",
-    featuredImageAlt: "Structured setup guide for a moa tv app workflow with secure sign-in, playback testing, and device preparation",
-    ogImage: "/images/blog/moa-tv-app-setup.webp",
+    image: "/images/blog/moa-tv-app-device-setup.webp",
+    featuredImage: "/images/blog/moa-tv-app-device-setup.webp",
+    featuredImageAlt: "Person using a remote to set up a streaming app on a television with a router and media box",
+    ogImage: "/images/blog/moa-tv-app-device-setup.webp",
     sections: [
       {
         heading: "Clarify the app and account before installing anything",
@@ -572,6 +260,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "See channelmoa app guidance", href: "/apps" },
+      { label: "Follow the Samsung and LG Smart TV setup guide", href: "/blog/samsung-lg-smart-tv-iptv-setup-guide-2026" },
       { label: "Review channelmoa services", href: "/services" },
       { label: "Compare channelmoa packages", href: "/packages" },
       { label: "Optimize an Android device", href: "/blog/android-iptv-performance-guide" },
@@ -602,7 +291,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Confirm authorized coverage before match day",
         intro: [
           "The phrase “iptv login watch world cup” often reflects a practical goal: getting an existing, authorized streaming account working before a major match. Start with rights, not technology. Confirm that the event is included in your package and legally available in your location. Tournament rights vary by territory and can change, so a working account does not guarantee that every event is included.",
-          "Use the official or provider-supported app and account details. Avoid credentials offered in public comments, unofficial downloads, or messages from unknown sellers. channelmoa frames sports setup around licensed access, supported devices, and responsible account use; it does not treat a login as permission to view programming outside applicable rights."
+          "Use an authorized broadcaster or provider-supported app and your own account details. Avoid credentials offered in public comments, unofficial downloads, or messages from unknown sellers. channelmoa frames sports setup around applicable rights, supported devices, and responsible account use; it does not treat a login as permission to view programming outside those rights."
         ],
         subheading: "Create a match-day readiness card",
         details: [
@@ -699,13 +388,14 @@ export const blogPosts: BlogPost[] = [
     date: published,
     updated: published,
     readingTime: "12 min read",
-    image: "/images/blog/smart-tv-troubleshooting.webp",
-    featuredImage: "/images/blog/smart-tv-troubleshooting.webp",
-    featuredImageAlt: "Smart TV troubleshooting visual for Wi-Fi, storage, app updates, login issues, and guide sync",
-    ogImage: "/images/blog/smart-tv-troubleshooting.webp",
+    image: "/images/blog/smart-tv-setup-troubleshooting.webp",
+    featuredImage: "/images/blog/smart-tv-setup-troubleshooting.webp",
+    featuredImageAlt: "Person checking a home router and cable while troubleshooting a Smart TV setup",
+    ogImage: "/images/blog/smart-tv-setup-troubleshooting.webp",
     sections: [
       {
         heading: "Mistakes 1 and 2: trusting the Wi-Fi icon and skipping updates",
+        image: { src: "/images/blog/smart-tv-router-troubleshooting.webp", alt: "Person repositioning a home router beside a Smart TV while checking the streaming setup", width: 1200, height: 800 },
         intro: [
           "A television can show a full Wi-Fi icon while still suffering interference, packet loss, or an overloaded mesh connection. Mistake one is testing the internet beside the router instead of at the TV. Run repeated tests from the television or a device placed beside it, and compare evening results with quieter hours. If practical, connect Ethernet temporarily; a dramatic improvement identifies the wireless path as the problem.",
           "Mistake two is allowing the TV firmware and IPTV app to drift several versions behind. Updates can improve certificates, codecs, memory handling, and login compatibility. Update deliberately, restart the television, and open the app once before a planned event. Do not wait until viewing time, because a large system update may consume storage or change settings."
@@ -782,6 +472,8 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Review compatible IPTV apps", href: "/apps" },
+      { label: "Install and troubleshoot Samsung and LG Smart TVs", href: "/blog/samsung-lg-smart-tv-iptv-setup-guide-2026" },
+      { label: "Compare Smart TVs, Firesticks, and Android TV boxes", href: "/blog/best-device-for-iptv-2026" },
       { label: "Compare channelmoa packages", href: "/packages" },
       { label: "See the streaming services overview", href: "/services" },
       { label: "Read the complete buffering diagnosis", href: "/blog/iptv-buffering-root-causes" },
@@ -804,13 +496,14 @@ export const blogPosts: BlogPost[] = [
     date: published,
     updated: published,
     readingTime: "12 min read",
-    image: "/images/blog/android-performance.webp",
-    featuredImage: "/images/blog/android-performance.webp",
-    featuredImageAlt: "Android streaming performance guide focused on device storage, decoding, networking, and thermal stability",
-    ogImage: "/images/blog/android-performance.webp",
+    image: "/images/blog/android-tv-box-performance-setup.webp",
+    featuredImage: "/images/blog/android-tv-box-performance-setup.webp",
+    featuredImageAlt: "Person using a remote with a ventilated Android TV box connected by Ethernet",
+    ogImage: "/images/blog/android-tv-box-performance-setup.webp",
     sections: [
       {
         heading: "Measure the Android device before tuning the app",
+        image: { src: "/images/blog/android-tv-box-maintenance.webp", alt: "Person cleaning a ventilated Android TV box and checking its Ethernet connection", width: 1200, height: 800 },
         intro: [
           "Android phones, tablets, television boxes, and built-in TV systems share a name but not the same hardware. Check the operating system version, available storage, memory, network capability, and supported video codecs. A low-cost box may report 4K output while lacking the decoder performance or thermal design needed for long, high-bitrate sessions.",
           "Restart the device and run one known stream before changing settings. Note startup time, dropped frames, audio sync, device temperature, and whether navigation becomes slow. This baseline prevents a placebo improvement from being mistaken for a durable fix."
@@ -876,6 +569,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Browse channelmoa app guidance", href: "/apps" },
+      { label: "Compare Android TV boxes with other streaming devices", href: "/blog/best-device-for-iptv-2026" },
       { label: "Compare channelmoa packages", href: "/packages" },
       { label: "Explore channelmoa services", href: "/services" },
       { label: "Understand IPTV buffering causes", href: "/blog/iptv-buffering-root-causes" },
@@ -898,13 +592,14 @@ export const blogPosts: BlogPost[] = [
     date: published,
     updated: published,
     readingTime: "12 min read",
-    image: "/images/blog/firestick-optimization.webp",
-    featuredImage: "/images/blog/firestick-optimization.webp",
-    featuredImageAlt: "Firestick optimization workflow for storage, power, Wi-Fi, app updates, and remote-friendly playback",
-    ogImage: "/images/blog/firestick-optimization.webp",
+    image: "/images/blog/firestick-hdmi-streaming-setup.webp",
+    featuredImage: "/images/blog/firestick-hdmi-streaming-setup.webp",
+    featuredImageAlt: "Streaming stick connected to a television with an HDMI extender and separate power cable",
+    ogImage: "/images/blog/firestick-hdmi-streaming-setup.webp",
     sections: [
       {
         heading: "Start with storage and system health",
+        image: { src: "/images/blog/firestick-connection-maintenance.webp", alt: "Close view of a streaming stick with separate HDMI, power, and network connections behind a TV", width: 1200, height: 800 },
         intro: [
           "Compact streaming sticks have limited storage and share resources across the operating system, apps, thumbnails, and updates. Check available space before installing an IPTV app. Remove games and players you no longer use, then restart. Running close to full can slow menus, prevent updates, and cause an app to close during guide or VOD loading.",
           "Install pending system and trusted app-store updates before tuning playback. Open the player after updating and confirm that sign-in and remote navigation still work. Avoid collecting several IPTV players for the same account; duplicates consume storage and make it harder to identify which settings are stable."
@@ -969,10 +664,11 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Review supported device workflows", href: "/apps" },
+      { label: "Compare Firesticks with Smart TVs and Android TV boxes", href: "/blog/best-device-for-iptv-2026" },
       { label: "Compare channelmoa packages", href: "/packages" },
       { label: "Explore channelmoa services", href: "/services" },
       { label: "Diagnose buffering by category", href: "/blog/iptv-buffering-root-causes" },
-      { label: "Prepare for live sports", href: "/blog/iptv-login-watch-world-cup-guide" },
+      { label: "Prepare an authorized live-sports streaming setup", href: "/blog/live-sports-streaming-setup-guide" },
       { label: "Ask channelmoa for support", href: "/contact" }
     ],
     cta: { heading: "Make the Firestick setup easier to maintain", text: "Share the device generation, available storage, and app name with channelmoa before selecting a package." },
@@ -991,13 +687,14 @@ export const blogPosts: BlogPost[] = [
     date: published,
     updated: published,
     readingTime: "12 min read",
-    image: "/images/blog/buffering-diagnostics.webp",
-    featuredImage: "/images/blog/buffering-diagnostics.webp",
-    featuredImageAlt: "Buffering diagnostics map showing device, network, connection, and delivery issues for IPTV playback",
-    ogImage: "/images/blog/buffering-diagnostics.webp",
+    image: "/images/blog/iptv-buffering-home-network-test.webp",
+    featuredImage: "/images/blog/iptv-buffering-home-network-test.webp",
+    featuredImageAlt: "Person testing an Ethernet cable between a home router, laptop, and television",
+    ogImage: "/images/blog/iptv-buffering-home-network-test.webp",
     sections: [
       {
         heading: "Define the symptom before choosing a fix",
+        image: { src: "/images/blog/buffering-diagnostic-path.webp", alt: "Step-by-step buffering diagnostic path from modem and router to playback device and television", width: 1200, height: 800 },
         intro: [
           "Buffering means the player cannot maintain enough ready media for continuous playback, but it does not identify why. Write down whether playback stalls immediately or after a predictable period, affects live or on-demand content, appears on one item or all items, and occurs on one device or the whole home. Also note the time and whether audio, menus, or other apps remain responsive.",
           "This description creates a fault map. One failing device suggests app, storage, decoder, or local signal. Every device failing suggests the internet connection, router, account, route, or upstream service. One live item failing while VOD works points elsewhere than a player that crashes before loading anything."
@@ -1063,6 +760,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Compare channelmoa packages", href: "/packages" },
+      { label: "Prepare an authorized live-sports streaming setup", href: "/blog/live-sports-streaming-setup-guide" },
       { label: "Check supported streaming apps", href: "/apps" },
       { label: "Review channelmoa services", href: "/services" },
       { label: "Optimize Android performance", href: "/blog/android-iptv-performance-guide" },
@@ -1086,13 +784,14 @@ export const blogPosts: BlogPost[] = [
     date: published,
     updated: published,
     readingTime: "12 min read",
-    image: "/images/blog/4k-streaming-requirements.webp",
-    featuredImage: "/images/blog/4k-streaming-requirements.webp",
-    featuredImageAlt: "4K streaming readiness checklist covering bitrate, decoder support, HDMI path, and display setup",
-    ogImage: "/images/blog/4k-streaming-requirements.webp",
+    image: "/images/blog/4k-home-streaming-setup.webp",
+    featuredImage: "/images/blog/4k-home-streaming-setup.webp",
+    featuredImageAlt: "Person viewing a 4K home entertainment setup with a television, soundbar, router, and media box",
+    ogImage: "/images/blog/4k-home-streaming-setup.webp",
     sections: [
       {
         heading: "4K is a chain, not a single setting",
+        image: { src: "/images/blog/4k-streaming-signal-chain.webp", alt: "Complete 4K streaming signal path from authorized source through router, player, HDMI, television, and audio", width: 1200, height: 800 },
         intro: [
           "A television displaying a 4K menu does not prove that the entire stream is 4K. The authorized source, package, delivery bitrate, network, player, device decoder, HDMI path, and display must all support the format. If one link falls back or struggles, selecting a 4K label may produce upscaling, dropped frames, buffering, or no picture.",
           "Begin with availability. Confirm that the selected programming and account support the desired resolution in your location. Not every title or live event is produced or distributed in 4K, and responsible legal IPTV streaming guidance should describe availability realistically rather than promising one resolution everywhere."
@@ -1158,6 +857,8 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Review channelmoa services", href: "/services" },
+      { label: "Prepare an authorized live-sports streaming setup", href: "/blog/live-sports-streaming-setup-guide" },
+      { label: "Choose a device for a complete 4K playback path", href: "/blog/best-device-for-iptv-2026" },
       { label: "Check apps and device compatibility", href: "/apps" },
       { label: "Diagnose buffering root causes", href: "/blog/iptv-buffering-root-causes" },
       { label: "Optimize an Android player", href: "/blog/android-iptv-performance-guide" },
@@ -1346,6 +1047,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Compare channelmoa packages", href: "/packages" },
+      { label: "Read the lawful reseller business operations guide", href: "/blog/iptv-reseller-business-starter-guide" },
       { label: "Explore services and support", href: "/services" },
       { label: "Review supported apps and devices", href: "/apps" },
       { label: "Read the legal subscription checklist", href: "/blog/legal-iptv-subscription-checklist-2026" },
@@ -1360,6 +1062,108 @@ export const blogPosts: BlogPost[] = [
     ]
   }
 ];
+
+const legacyCategories: Record<string, string> = {
+  "legal-iptv-subscription-checklist-2026": "Buyer guides",
+  "moa-tv-app-setup-guide": "Smart TV and apps",
+  "smart-tv-iptv-setup-mistakes": "Smart TV and apps",
+  "android-iptv-performance-guide": "Streaming devices",
+  "firestick-iptv-setup-optimization": "Streaming devices",
+  "iptv-buffering-root-causes": "Streaming performance",
+  "iptv-4k-streaming-requirements": "Streaming performance"
+};
+
+const legacyReferences: Record<string, BlogPost["references"]> = {
+  "legal-iptv-subscription-checklist-2026": [
+    { label: "FTC Consumer Advice: online shopping, seller checks, terms, and purchase records", href: "https://consumer.ftc.gov/articles/online-shopping" },
+    { label: "FTC Consumer Advice: resolving returns, refunds, and other purchase problems", href: "https://consumer.ftc.gov/articles/solving-problems-business-returns-refunds-and-other-resolutions" }
+  ],
+  "moa-tv-app-setup-guide": [
+    { label: "Google Play Help: review and change Android app permissions", href: "https://support.google.com/googleplay/answer/9431959?hl=en" },
+    { label: "Samsung Support: television software updates and model-specific help", href: "https://www.samsung.com/us/support/televisions-home-theater/televisions/" }
+  ],
+  "smart-tv-iptv-setup-mistakes": [
+    { label: "LG Support: update television software and check model-specific instructions", href: "https://www.lg.com/us/support/help-library/lg-tv-how-can-i-update-the-tv-software--20154858251400" },
+    { label: "Samsung Support: Smart TV software, network, and troubleshooting guidance", href: "https://www.samsung.com/us/support/televisions-home-theater/televisions/" }
+  ],
+  "android-iptv-performance-guide": [
+    { label: "Android TV Help", href: "https://support.google.com/androidtv/" },
+    { label: "Google TV Help", href: "https://support.google.com/googletv/" }
+  ],
+  "firestick-iptv-setup-optimization": [
+    { label: "Amazon Fire TV documentation", href: "https://developer.amazon.com/docs/fire-tv/get-started-with-fire-tv.html" },
+    { label: "Amazon Fire TV compatibility FAQ", href: "https://developer.amazon.com/docs/fire-tv/faq-general.html" }
+  ],
+  "iptv-buffering-root-causes": [
+    { label: "FCC: Measuring Broadband America fixed-broadband performance report", href: "https://www.fcc.gov/reports-research/reports/measuring-broadband-america/measuring-fixed-broadband" },
+    { label: "Google Home and Nest Help: Wi-Fi placement, interference, and performance factors", href: "https://support.google.com/googlehome/answer/7578264?hl=en" }
+  ],
+  "iptv-4k-streaming-requirements": [
+    { label: "Apple Support: 4K, HDR, HDMI cable, display, and receiver requirements", href: "https://support.apple.com/en-us/102339" },
+    { label: "Apple TV 4K technical specifications: display, HDMI, network, and account requirements", href: "https://support.apple.com/en-us/111839" }
+  ]
+};
+
+const legacyUpdatedDates: Record<string, string> = {
+  "legal-iptv-subscription-checklist-2026": "2026-08-01",
+  "moa-tv-app-setup-guide": "2026-08-01",
+  "smart-tv-iptv-setup-mistakes": "2026-08-01",
+  "android-iptv-performance-guide": "2026-08-01",
+  "firestick-iptv-setup-optimization": "2026-08-01",
+  "iptv-buffering-root-causes": "2026-08-01",
+  "iptv-4k-streaming-requirements": "2026-08-01"
+};
+
+export function categorySlug(category: string) {
+  return category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+export const blogPosts: BlogPost[] = [
+  ...originalBlogPosts.filter((post) => post.slug !== "iptv-login-watch-world-cup-guide" && !improvedBlogPosts.some((improved) => improved.slug === post.slug)),
+  ...improvedBlogPosts
+].map((post) => ({
+  ...post,
+  updated: legacyUpdatedDates[post.slug] || post.updated,
+  category: post.category || legacyCategories[post.slug] || "Streaming guides",
+  references: post.references || legacyReferences[post.slug]
+}));
+
+export const blogCategories = [...new Set(blogPosts.map((post) => post.category!))];
+
+export const blogCategoryDetails: Record<string, { description: string; metaDescription: string; indexable: boolean }> = {
+  "Smart TV and apps": {
+    metaDescription: "Browse Smart TV app installation and troubleshooting guides for Samsung, LG, Wi-Fi, storage, updates, login, and playback.",
+    description: "Choose a Smart TV setup guide based on the screen and problem in front of you. Start with the Samsung and LG installation walkthrough for a new television, use the app preparation guide before signing in, or follow the setup-mistakes guide when Wi-Fi, storage, updates, or account details interrupt playback.",
+    indexable: true
+  },
+  "Streaming devices": {
+    metaDescription: "Compare Smart TVs, streaming sticks, and Android TV boxes by connectivity, storage, decoding, power, remote use, and maintenance.",
+    description: "Compare built-in television platforms, streaming sticks, and Android TV boxes before choosing hardware. These guides explain connectivity, storage, decoding, power, remote use, maintenance, and the tradeoffs between an integrated screen and a replaceable external player.",
+    indexable: true
+  },
+  "Buyer guides": {
+    metaDescription: "Use evidence-based streaming buyer guides to review provider terms, devices, regional availability, payments, privacy, and support.",
+    description: "Evaluate a streaming subscription with evidence instead of relying on promotional claims. Use the pre-purchase checklist to review terms, devices, regional availability, payment records, and support, then apply the provider-comparison framework to the offers that remain suitable.",
+    indexable: true
+  },
+  "Streaming performance": {
+    metaDescription: "Diagnose streaming buffering and prepare a complete 4K playback path across the network, player, HDMI connection, display, and audio.",
+    description: "Diagnose playback methodically before changing applications or accounts. The buffering guide separates network, Wi-Fi, device, application, and delivery symptoms, while the 4K guide checks the complete path from available source quality through the player, HDMI connection, display, and audio equipment.",
+    indexable: true
+  },
+  "Reseller operations": {
+    metaDescription: "Plan streaming reseller operations around service scope, onboarding, records, pricing, privacy, renewals, support, and escalation.",
+    description: "Plan a responsible streaming reseller operation around documented service scope, customer qualification, support capacity, privacy, records, pricing, renewals, and escalation. This category will expand only when another genuinely distinct business operations guide is published.",
+    indexable: false
+  },
+  "Sports streaming setup": {
+    metaDescription: "Prepare live-sports streaming with authorized-service, account, device, app, network, time-zone, security, and backup checks.",
+    description: "Prepare an authorized live-sports stream by checking the account, regional service, device, application, network, time zone, security, and backup plan. The current guide uses the completed 2026 World Cup as a dated example while keeping the workflow useful for future events.",
+    indexable: false
+  }
+};
+
+export const indexableBlogCategories = blogCategories.filter((category) => blogCategoryDetails[category]?.indexable);
 
 export function getPost(slug: string) {
   return blogPosts.find((post) => post.slug === slug);

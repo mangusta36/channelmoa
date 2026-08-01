@@ -1,4 +1,4 @@
-import { BlogPreview, DeviceCompatibility, FAQ, Hero, PricingCards, ResellerBand, ServiceGrid, StatsStrip, WhyChoose } from "@/components/Sections";
+import { BlogPreview, DeviceCompatibility, FAQ, Hero, HomepageGuidance, PricingCards, ResellerBand, ServiceGrid, StatsStrip, WhyChoose } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import { faqs } from "@/data/site-data";
 import { serviceJsonLd, webPageJsonLd } from "@/lib/site";
@@ -16,7 +16,7 @@ export default function HomePage() {
   const pageJsonLd = webPageJsonLd({
     path: "/",
     name: "channelmoa IPTV Streaming Platform | Live TV, Sports & VOD",
-    description: "Explore channelmoa legal IPTV streaming services, transparent packages, supported apps, device setup guidance, practical help, and reseller workflows."
+    description: "Explore channelmoa streaming packages, supported apps, device setup guidance, practical troubleshooting, and reseller workflows."
   });
 
   return (
@@ -28,7 +28,7 @@ export default function HomePage() {
           <div className="section-head center">
             <span className="eyebrow">channelmoa packages</span>
             <h2>Choose a clear plan for your viewing routine</h2>
-            <p>Compare four channelmoa plans with transparent durations, multi-device access, guided activation, and professional support.</p>
+            <p>Compare four channelmoa plans by duration, one-device allowance, activation guidance, and available setup support.</p>
           </div>
           <PricingCards />
         </div>
@@ -46,6 +46,7 @@ export default function HomePage() {
         </div>
       </section>
       <DeviceCompatibility />
+      <HomepageGuidance />
       <ResellerBand />
       <section className="section">
         <div className="container">

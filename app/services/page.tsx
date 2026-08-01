@@ -6,7 +6,7 @@ import { pageMetadata, serviceJsonLd, webPageJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "channelmoa IPTV Services | Live TV, Sports, VOD & Support",
-  description: "Explore channelmoa IPTV services for legal live TV, sports, VOD, EPG, supported devices, reseller workflows, activation, and setup assistance.",
+  description: "Explore channelmoa IPTV services for live TV, sports, VOD, EPG, supported devices, reseller workflows, activation, and setup assistance.",
   path: "/services"
 });
 
@@ -21,12 +21,12 @@ export default function ServicesPage() {
       acceptedAnswer: { "@type": "Answer", text: item.answer }
     }))
   };
-  const pageJsonLd = webPageJsonLd({ path: "/services", name: "channelmoa IPTV Services", description: "Explore channelmoa IPTV services for legal live TV, sports, VOD, EPG, supported devices, reseller workflows, activation, and setup assistance." });
+  const pageJsonLd = webPageJsonLd({ path: "/services", name: "channelmoa IPTV Services", description: "Explore channelmoa IPTV services for live TV, sports, VOD, EPG, supported devices, reseller workflows, activation, and setup assistance." });
 
   return (
     <>
       <JsonLd data={[pageJsonLd, serviceJsonLd(), faqJsonLd]} />
-      <PageHero eyebrow="channelmoa IPTV services" title="Legal IPTV live TV, sports, VOD, apps, and support" text="channelmoa combines licensed IPTV streaming access with helpful setup support, device guidance, EPG workflows, and reseller-friendly operations." />
+      <PageHero eyebrow="channelmoa IPTV services" title="IPTV live TV, sports, VOD, apps, and support" text="channelmoa presents streaming access alongside setup support, device guidance, EPG workflows, and reseller-oriented operations. Programming availability depends on the selected package, location, and applicable distribution rights." />
       <section className="section">
         <div className="container">
           <div className="section-head center">
@@ -40,7 +40,7 @@ export default function ServicesPage() {
           <div>
             <h2>A complete IPTV streaming service provider experience</h2>
             <p>channelmoa is designed for viewers who want a modern IPTV subscription without confusion. Live TV, IPTV sports, IPTV VOD, EPG access, device setup, renewals, and support all belong to the same service journey. That makes the platform easier to evaluate during a free trial and easier to keep using after a package is active.</p>
-            <p>Every page presents channelmoa as a legal, licensed streaming platform. The service avoids unrealistic claims and focuses on compatible apps, stable configuration, and clear support. Whether you watch on Smart TV, Android, Firestick, iOS, Windows, or a supported box, the setup path begins with matching the account to the device.</p>
+            <p>channelmoa describes its available packages and uses rights-aware guidance rather than treating an account as proof of access to every program or territory. Customers should confirm current availability with support. Whether you watch on Smart TV, Android, Firestick, iOS, Windows, or a supported box, the setup path begins with matching the account to the device.</p>
           </div>
           <FAQ items={faqItems} />
         </div>

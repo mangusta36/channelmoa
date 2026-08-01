@@ -16,7 +16,7 @@ export function Footer() {
             <p>Premium IPTV streaming for live TV, sports, VOD, apps, devices, and reseller-friendly workflows.</p>
             <div className="footer-contact">
               <span><Mail size={16} /> {siteConfig.supportEmail}</span>
-              <span><Headphones size={16} /> 24/7 setup support</span>
+              <span><Headphones size={16} /> Device setup support</span>
             </div>
           </div>
           <div>

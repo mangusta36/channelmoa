@@ -32,6 +32,7 @@ export default function ResellerPage() {
             <h2>Responsible reseller growth starts with clarity</h2>
             <p>A strong IPTV reseller business depends on more than pricing. Customers need legal streaming positioning, compatible app recommendations, renewal reminders, practical support, and realistic expectations about internet speed and device performance. channelmoa helps resellers organize those moving parts so the customer experience remains consistent.</p>
             <p>Use the reseller page alongside the channelmoa services, packages, and blog guides to train support conversations. The result is a more professional IPTV service provider relationship and a better path to long-term subscriptions.</p>
+            <p><Link href="/blog/iptv-reseller-business-starter-guide">Read the lawful IPTV reseller business operations guide</Link> before setting prices or onboarding customers.</p>
             <Link className="btn btn-primary" href={whatsappUrl("Hello channelmoa, I want to request reseller details. Please send me the setup details.")}>Request reseller details</Link>
           </div>
           <div className="card">

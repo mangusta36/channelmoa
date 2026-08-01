@@ -10,7 +10,7 @@ export function AnnouncementBar() {
   return (
     <div className="announcement">
       <span><Zap size={14} /> Free trial setup for new viewers</span>
-      <span><Headphones size={14} /> 24/7 support every day</span>
+      <span><Headphones size={14} /> Device setup support</span>
       <span><Mail size={14} /> {siteConfig.supportEmail}</span>
     </div>
   );

@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <JsonLd data={webPageJsonLd({ path: "/contact", type: "ContactPage", name: "Contact channelmoa", description: "Contact channelmoa for a trial, package guidance, Smart TV, Android or Firestick setup support, app troubleshooting, and reseller information." })} />
-      <PageHero eyebrow="Contact channelmoa" title="Request a free IPTV trial or get channelmoa setup support" text="Tell us your device, preferred package, and streaming needs so channelmoa support can guide your legal IPTV setup." />
+      <PageHero eyebrow="Contact channelmoa" title="Request a free IPTV trial or get channelmoa setup support" text="Tell us your device, preferred package, location, and streaming needs so support can explain the available setup path and applicable regional limitations." />
       <section className="section">
         <div className="container grid-2">
           <div className="card form-grid">
@@ -35,7 +35,7 @@ export default function ContactPage() {
                 <li>Confirm the device you want to test first</li>
                 <li>Check your internet connection near that screen</li>
                 <li>Ask about packages only after playback is verified</li>
-                <li>Use legal, licensed streaming expectations</li>
+                <li>Ask how programming rights and regional availability apply</li>
               </ul>
             </div>
           </div>

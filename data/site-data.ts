@@ -24,8 +24,8 @@ export const navItems = [
 ];
 
 export const stats = [
-  ["8,000+", "channels and VOD titles"],
-  ["24/7", "live setup support"],
+  ["Live + VOD", "availability varies by package and region"],
+  ["Guided", "device setup support"],
   ["4K-ready", "where available"],
   ["5+", "popular device families"]
 ];
@@ -38,7 +38,7 @@ export const services = [
   { title: "EPG Program Guide", icon: Clock, text: "Use a structured guide to compare channels, plan shows, and move around live TV quickly." },
   { title: "Multi-device Access", icon: MonitorSmartphone, text: "Watch on Smart TV, Android, Firestick, iOS, Windows, compatible boxes, and supported IPTV apps." },
   { title: "Reseller Workflows", icon: ChartNoAxesCombined, text: "Support trials, renewals, account questions, and customer onboarding with a cleaner process." },
-  { title: "Always-on Support", icon: Headphones, text: "Get help with app choice, activation, troubleshooting, package questions, and renewals any day." }
+  { title: "Setup Support", icon: Headphones, text: "Ask for help with app choice, activation, troubleshooting, package questions, and renewals." }
 ];
 
 export const devices = [
@@ -83,16 +83,16 @@ export const packages = [
     duration: "24 Months",
     price: "$110",
     whatsappMessage: "Hello channelmoa, I want the Diamond Package for 24 months at $110. Please send me the setup details.",
-    description: "Best value for committed users who want the longest duration and the strongest price-to-access ratio.",
-    features: ["6,000+ Live Channels with EPG", "International & Premium VOD", "PPV & Sports Events", "1 Device per Subscription", "Best long-term value"],
+    description: "The longest plan, with the lowest monthly equivalent among the package prices currently shown.",
+    features: ["6,000+ Live Channels with EPG", "International & Premium VOD", "PPV & Sports Events", "1 Device per Subscription", "Longest listed term"],
     featured: false
   }
 ];
 
 export const faqs = [
   {
-    question: "Is channelmoa a legal IPTV streaming service?",
-    answer: "Yes. channelmoa is presented as a legal, licensed IPTV streaming platform focused on legitimate live TV, sports, VOD, and supported device access."
+    question: "How does channelmoa address programming rights?",
+    answer: "channelmoa presents its packages for rights-aware use and asks customers to confirm current content and regional availability before purchase. The website does not provide independent verification of licensing for every program or territory."
   },
   {
     question: "Which devices work with channelmoa IPTV?",
