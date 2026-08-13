@@ -383,9 +383,10 @@ export const newBlogPosts: BlogPost[] = [
       { label: "Optimize IPTV on Android devices", href: "/blog/android-iptv-performance-guide" },
       { label: "Optimize a Firestick setup", href: "/blog/firestick-iptv-setup-optimization" },
       { label: "Check 4K streaming requirements", href: "/blog/iptv-4k-streaming-requirements" },
+      { label: "Compare IPTV services before committing to a device", href: "/blog/channelmoa-vs-generic-iptv-services" },
       { label: "Diagnose buffering before replacing hardware", href: "/blog/iptv-buffering-root-causes" },
-      { label: "Review the legal IPTV buyer checklist", href: "/blog/legal-iptv-subscription-checklist-2026" }
-      ,{ label: "Optimize a Firestick for focused streaming", href: "/blog/firestick-iptv-setup-optimization" }
+      { label: "Review the legal IPTV buyer checklist", href: "/blog/legal-iptv-subscription-checklist-2026" },
+      { label: "Prepare a device for live sports streaming", href: "/blog/live-sports-streaming-setup-guide" }
     ],
     cta: { heading: "Choose for the screen and viewer you actually have", text: "Share the television model, preferred app, network connection, viewing resolution, and user needs so channelmoa can discuss a suitable lawful device path." },
     faqs: [

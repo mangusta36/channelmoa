@@ -668,6 +668,7 @@ const originalBlogPosts: BlogPost[] = [
       { label: "Compare channelmoa packages", href: "/packages" },
       { label: "Explore channelmoa services", href: "/services" },
       { label: "Diagnose buffering by category", href: "/blog/iptv-buffering-root-causes" },
+      { label: "Check realistic 4K streaming requirements", href: "/blog/iptv-4k-streaming-requirements" },
       { label: "Prepare an authorized live-sports streaming setup", href: "/blog/live-sports-streaming-setup-guide" },
       { label: "Ask channelmoa for support", href: "/contact" }
     ],
@@ -782,7 +783,7 @@ const originalBlogPosts: BlogPost[] = [
     seoTitle: "4K IPTV Streaming Requirements | channelmoa",
     description: "Check bandwidth, network stability, decoding, HDMI, display, app settings, and account requirements before choosing reliable 4K IPTV streaming.",
     date: published,
-    updated: published,
+    updated: "2026-08-13",
     readingTime: "12 min read",
     image: "/images/blog/4k-home-streaming-setup.webp",
     featuredImage: "/images/blog/4k-home-streaming-setup.webp",
@@ -806,13 +807,14 @@ const originalBlogPosts: BlogPost[] = [
       {
         heading: "Plan bandwidth for stability, not the minimum edge",
         intro: [
-          "4K bitrate varies by codec, frame rate, content complexity, and provider. Instead of treating one speed number as universal, preserve headroom above the observed stream and account for other household traffic. A connection that barely sustains the media rate may fail whenever a phone starts a cloud backup or Wi-Fi retransmits packets.",
-          "Use Ethernet for fixed devices where practical. If Wi-Fi is required, test at the player during busy hours and look for stable results across several runs. Low packet loss and consistent latency matter alongside throughput. A closer access point with strong backhaul can be more valuable than purchasing a faster plan that still ends in a weak wireless signal."
+          "4K bitrate varies by codec, frame rate, content complexity, and provider. Instead of treating one advertised speed number as universal, preserve headroom above the observed stream and account for other household traffic. A connection that barely sustains the media rate may fail whenever a phone starts a cloud backup, a console updates, or Wi-Fi retransmits packets.",
+          "Use Ethernet for fixed devices where practical. If Wi-Fi is required, test at the player during busy hours and look for stable results across several runs. Low packet loss and consistent latency matter alongside throughput. Wi-Fi 5 and Wi-Fi 6 can both support strong 4K playback, but neither standard guarantees results if the router is badly placed, the mesh backhaul is weak, or the player has a poor radio position behind the television."
         ],
         subheading: "Test the network under household load",
         details: [
           "Play authorized 4K content while the home follows a normal routine. If performance fails only when other screens or uploads are active, manage traffic, improve Wi-Fi, or choose a quality that preserves reliability. Do not diagnose with every other device disconnected and assume the result represents daily use.",
-          "Compare 1080p on the same app and device. If 1080p is stable while 4K repeatedly fails, the account, source bitrate, network headroom, or decoding path becomes the focus.",
+          "Compare 1080p on the same app and device. If 1080p is stable while 4K repeatedly fails, the account, source bitrate, network headroom, or decoding path becomes the focus. That comparison is often more useful than a single broadband test because it measures the full route to the screen instead of the plan sold by the ISP.",
+          "Check router and node placement before upgrading the internet package. A router hidden in a cabinet, placed behind a television, or linked to a weak mesh node can turn a fast plan into an inconsistent 4K experience at the actual seat.",
           "A real-world test should last long enough to catch temporal changes. A five-minute pass may look fine while the device heats up or the network enters a busier period."
         ]
       },
@@ -826,6 +828,7 @@ const originalBlogPosts: BlogPost[] = [
         details: [
           "Use a supported player and begin with default decoder and buffer settings. Enable hardware decoding when it is compatible, then test one sample. Avoid forcing HDR, frame rate, resolution, and a large buffer simultaneously. Each additional override makes it harder to identify the failing link.",
           "Keep the app updated and preserve storage for cache and guide data. Confirm login and package status separately; a decoder cannot repair an account that does not include the selected authorized source.",
+          "Check the HDMI and display path conservatively. A 4K television alone does not guarantee a 4K stream if the selected HDMI input is limited, an AVR or soundbar cannot pass the format cleanly, or the app is outputting a different mode than the panel expects.",
           "The right setup is the one that delivers a stable, repeatable result on the exact device and display you own. That is a better target than chasing theoretical maximum settings."
         ]
       },
@@ -1111,7 +1114,7 @@ const legacyUpdatedDates: Record<string, string> = {
   "android-iptv-performance-guide": "2026-08-01",
   "firestick-iptv-setup-optimization": "2026-08-01",
   "iptv-buffering-root-causes": "2026-08-01",
-  "iptv-4k-streaming-requirements": "2026-08-01"
+  "iptv-4k-streaming-requirements": "2026-08-13"
 };
 
 export function categorySlug(category: string) {
@@ -1158,8 +1161,8 @@ export const blogCategoryDetails: Record<string, { description: string; metaDesc
   },
   "Sports streaming setup": {
     metaDescription: "Prepare live-sports streaming with authorized-service, account, device, app, network, time-zone, security, and backup checks.",
-    description: "Prepare an authorized live-sports stream by checking the account, regional service, device, application, network, time zone, security, and backup plan. The current guide uses the completed 2026 World Cup as a dated example while keeping the workflow useful for future events.",
-    indexable: false
+    description: "Prepare an authorized live-sports stream by checking the account, regional service, device, application, network, time zone, security, and backup plan before a major event.",
+    indexable: true
   }
 };
 
