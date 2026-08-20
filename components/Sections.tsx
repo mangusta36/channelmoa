@@ -225,8 +225,8 @@ export function PricingCards() {
           <p>{plan.description}</p>
           <div className="price">{plan.price}<span> / {plan.duration.toLowerCase()}</span></div>
           <ul className="feature-list">
-            {plan.features.map((feature) => (
-              <li key={feature}><Check size={17} /> {feature}</li>
+            {plan.features.map((feature, featureIndex) => (
+              <li key={`feat-${plan.name}-${featureIndex}`}><Check size={17} /> {feature}</li>
             ))}
           </ul>
           <Link className={plan.featured ? "btn btn-primary" : "btn btn-secondary"} href={whatsappUrl(plan.whatsappMessage)}>Get Started</Link>
@@ -239,8 +239,8 @@ export function PricingCards() {
 export function FAQ({ items = faqs }: { items?: typeof faqs }) {
   return (
     <div className="faq-list">
-      {items.map((item) => (
-        <article className="faq-item" key={item.question}>
+      {items.map((item, index) => (
+        <article className="faq-item" key={`faq-${index}-${item.question}`}>
           <h3>{item.question}</h3>
           <p>{item.answer}</p>
         </article>

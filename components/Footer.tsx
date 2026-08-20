@@ -31,7 +31,7 @@ export function Footer() {
               <Link href="/blog/legal-iptv-subscription-checklist-2026">Subscription Checklist</Link>
               <Link href="/blog/smart-tv-iptv-setup-mistakes">Smart TV Setup</Link>
               <Link href="/blog/firestick-iptv-setup-optimization">Firestick Optimization</Link>
-              <Link href="/blog/iptv-buffering-root-causes">Buffering Diagnosis</Link>
+              
             </div>
           </div>
           <div>

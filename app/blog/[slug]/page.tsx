@@ -37,6 +37,42 @@ function headingId(heading: string) {
   return heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
+function renderParagraphContent(text: string) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts: (string | React.ReactNode)[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    const label = match[1];
+    const href = match[2];
+    const isInternal = href.startsWith("/");
+    if (isInternal) {
+      parts.push(
+        <Link key={`${match.index}-${href}`} href={href}>
+          {label}
+        </Link>
+      );
+    } else {
+      parts.push(
+        <a key={`${match.index}-${href}`} href={href} target="_blank" rel="noreferrer">
+          {label}
+        </a>
+      );
+    }
+    lastIndex = linkRegex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
+}
+
 export default async function BlogPostPage({ params }: BlogRouteProps) {
   const { slug } = await params;
   const post = getPost(slug);
@@ -122,32 +158,32 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
           {post.tableOfContents?.length ? (
             <nav className="article-toc" aria-label="Table of contents">
               <h2>Table of contents</h2>
-              <ol>{articleSections.map((section) => <li key={section.heading}><a href={`#${headingId(section.heading)}`}>{section.heading}</a></li>)}</ol>
+              <ol>{articleSections.map((section, index) => <li key={`toc-${index}-${section.heading}`}><a href={`#${headingId(section.heading)}`}>{section.heading}</a></li>)}</ol>
             </nav>
           ) : null}
           {post.comparisonTable ? (
             <div className="article-table-wrap">
               <table>
                 <caption>{post.comparisonTable.caption}</caption>
-                <thead><tr>{post.comparisonTable.headers.map((header) => <th key={header} scope="col">{header}</th>)}</tr></thead>
-                <tbody>{post.comparisonTable.rows.map((row) => <tr key={row[0]}>{row.map((cell, index) => index === 0 ? <th key={cell} scope="row">{cell}</th> : <td key={cell}>{cell}</td>)}</tr>)}</tbody>
+                <thead><tr>{post.comparisonTable.headers.map((header, index) => <th key={`header-${index}-${header}`} scope="col">{header}</th>)}</tr></thead>
+                <tbody>{post.comparisonTable.rows.map((row, rowIndex) => <tr key={`row-${rowIndex}`}>{row.map((cell, cellIndex) => cellIndex === 0 ? <th key={`cell-${rowIndex}-${cellIndex}`} scope="row">{cell}</th> : <td key={`cell-${rowIndex}-${cellIndex}`}>{cell}</td>)}</tr>)}</tbody>
               </table>
             </div>
           ) : null}
-          {articleSections.map((section) => (
-            <section key={section.heading}>
+          {articleSections.map((section, sectionIndex) => (
+            <section key={`section-${sectionIndex}-${section.heading}`}>
               <h2 id={headingId(section.heading)}>{section.heading}</h2>
-              {section.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.intro.map((paragraph, index) => <p key={`intro-${sectionIndex}-${index}`}>{renderParagraphContent(paragraph)}</p>)}
               {section.image ? <Image className="article-inline-image" src={section.image.src} alt={section.image.alt} width={section.image.width} height={section.image.height} sizes="(max-width: 900px) calc(100vw - 32px), 860px" /> : null}
               <h3>{section.subheading}</h3>
-              {section.details.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.details.map((paragraph, index) => <p key={`details-${sectionIndex}-${index}`}>{renderParagraphContent(paragraph)}</p>)}
             </section>
           ))}
           {presentation ? <section className="expert-guide">
             <h2>{presentation.expertHeading}</h2>
             <p>{presentation.expertIntro}</p>
             {presentation.items.map((item, index) => (
-              <div className="expert-step" key={item.heading}>
+              <div className="expert-step" key={`expert-${index}-${item.heading}`}>
                 <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <div>
                   <h3>{item.heading}</h3>
@@ -159,16 +195,16 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
           </section> : null}
           {editorialAddition ? <section>
             <h2>{editorialAddition.heading}</h2>
-            {editorialParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            {editorialParagraphs.map((paragraph, index) => <p key={`editorial-${index}`}>{renderParagraphContent(paragraph)}</p>)}
           </section> : null}
           {post.references?.length ? <section>
             <h2>Sources and further reading</h2>
-            <ul className="article-links">{post.references.map((item) => <li key={item.href}><a href={item.href} target="_blank" rel="noreferrer">{item.label}</a></li>)}</ul>
+            <ul className="article-links">{post.references.map((item, index) => <li key={`ref-${index}-${item.href}`}><a href={item.href} target="_blank" rel="noreferrer">{item.label}</a></li>)}</ul>
           </section> : null}
           <section>
             <h2>Related channelmoa resources</h2>
             <ul className="article-links">
-              {post.relatedLinks.map((item) => <li key={item.href}><Link href={item.href}>{item.label}</Link></li>)}
+              {post.relatedLinks.map((item, index) => <li key={`rel-${index}-${item.href}`}><Link href={item.href}>{item.label}</Link></li>)}
             </ul>
           </section>
           <section>
