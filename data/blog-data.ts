@@ -765,6 +765,7 @@ const originalBlogPosts: BlogPost[] = [
       { label: "Check supported streaming apps", href: "/apps" },
       { label: "Review channelmoa services", href: "/services" },
       { label: "Optimize Android performance", href: "/blog/android-iptv-performance-guide" },
+      { label: "Optimize home router settings, DNS, and VPNs", href: "/blog/iptv-network-optimization-vpn-guide-2026" },
       { label: "Fix Smart TV setup mistakes", href: "/blog/smart-tv-iptv-setup-mistakes" },
       { label: "Check realistic 4K requirements", href: "/blog/iptv-4k-streaming-requirements" },
       { label: "Contact channelmoa support", href: "/contact" }
