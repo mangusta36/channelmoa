@@ -1132,6 +1132,14 @@ export const blogPosts: BlogPost[] = [
   references: post.references || legacyReferences[post.slug]
 }));
 
+export const blogPostsByDate: BlogPost[] = [...blogPosts].sort((a, b) => {
+  const aTime = Date.parse(a.date);
+  const bTime = Date.parse(b.date);
+  if (Number.isNaN(aTime)) throw new Error(`Invalid "date" on post "${a.slug}": "${a.date}"`);
+  if (Number.isNaN(bTime)) throw new Error(`Invalid "date" on post "${b.slug}": "${b.date}"`);
+  return bTime - aTime || a.slug.localeCompare(b.slug);
+});
+
 export const blogCategories = [...new Set(blogPosts.map((post) => post.category!))];
 
 export const blogCategoryDetails: Record<string, { description: string; metaDescription: string; indexable: boolean }> = {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BlogCard, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import Link from "next/link";
-import { blogCategories, blogPosts, categorySlug } from "@/data/blog-data";
+import { blogCategories, blogPosts, blogPostsByDate, categorySlug } from "@/data/blog-data";
 import { canonical, pageMetadata, siteConfig, webPageJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
@@ -35,7 +35,7 @@ export default function BlogIndexPage() {
           {blogCategories.map((category) => <Link key={category} href={`/blog/category/${categorySlug(category)}`}>{category}</Link>)}
         </nav>
         <div className="container grid-3">
-          {blogPosts.map((post) => <BlogCard post={post} key={post.slug} />)}
+          {blogPostsByDate.map((post) => <BlogCard post={post} key={post.slug} />)}
         </div>
       </section>
     </>

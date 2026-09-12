@@ -22,7 +22,7 @@ export function whatsappUrl(message: string) {
 }
 
 export function canonical(path = "/") {
-  return `${siteConfig.domain}${path === "/" ? "/" : path}`;
+  return path === "/" ? siteConfig.domain : `${siteConfig.domain}${path}`;
 }
 
 export function pageMetadata({

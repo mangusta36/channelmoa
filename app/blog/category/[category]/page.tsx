@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlogCard, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
-import { blogCategories, blogCategoryDetails, blogPosts, categorySlug } from "@/data/blog-data";
+import { blogCategories, blogCategoryDetails, blogPostsByDate, categorySlug } from "@/data/blog-data";
 import { canonical, pageMetadata, webPageJsonLd } from "@/lib/site";
 
 type CategoryPageProps = { params: Promise<{ category: string }> };
@@ -26,7 +26,7 @@ export default async function BlogCategoryPage({ params }: CategoryPageProps) {
   const { category: slug } = await params;
   const category = blogCategories.find((item) => categorySlug(item) === slug);
   if (!category) notFound();
-  const posts = blogPosts.filter((post) => post.category === category);
+  const posts = blogPostsByDate.filter((post) => post.category === category);
   const description = blogCategoryDetails[category].description;
   const categoryUrl = canonical(`/blog/category/${slug}`);
   const breadcrumbJsonLd = {
