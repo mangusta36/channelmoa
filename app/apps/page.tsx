@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CTASection, DeviceCompatibility, DeviceGrid, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, webPageJsonLd } from "@/lib/site";
@@ -26,7 +27,7 @@ export default function AppsPage() {
             <h2>Simple app setup for legal IPTV streaming</h2>
             <p>channelmoa support can help you choose an IPTV app workflow that fits your device and viewing habits. The best setup depends on screen size, remote controls, app availability, home network quality, and whether you prefer live TV, sports, VOD, or guide-first browsing.</p>
             <p>For best results, keep apps updated, use a stable connection, and test playback during a free trial. channelmoa IPTV is designed to make those checks easy before you select a subscription package.</p>
-            <p>If you found channelmoa while searching for moatv or a moa tv app, ask support to verify the correct supported player and official login process before entering account details.</p>
+            <p>If you found channelmoa while searching for moatv or a moa tv app, read the <Link href="/moa-iptv">Moa IPTV reference guide</Link> to check the naming and service-status information before entering account details.</p>
           </div>
           <div className="card">
             <h3>App setup checklist</h3>

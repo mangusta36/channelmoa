@@ -958,6 +958,17 @@ p {
   padding: 3.5rem 0;
 }
 
+.article p a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.article p a:hover {
+  color: var(--navy);
+}
+
 .article-byline {
   margin-top: 1.15rem;
   color: #607089;

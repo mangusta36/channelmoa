@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { CTASection, FAQ } from "@/components/Sections";
-import { blogPosts, getPost } from "@/data/blog-data";
+import { blogPosts, getPost, getPostClusterCta } from "@/data/blog-data";
 import { blogPresentation } from "@/data/blog-expert-guides";
 import { blogEditorialAdditions } from "@/data/blog-editorial-additions";
 import { canonical, pageMetadata, siteConfig, whatsappUrl } from "@/lib/site";
@@ -79,6 +79,7 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
   if (!post) notFound();
   const presentation = blogPresentation[post.slug];
   const editorialAddition = blogEditorialAdditions[post.slug];
+  const clusterCta = getPostClusterCta(post.slug);
   const articleSections = post.sections;
   const editorialParagraphLimits: Record<string, number> = {
     "moa-tv-app-setup-guide": 1,
@@ -216,7 +217,7 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
             <p>{post.cta.text}</p>
             <div className="article-cta-actions">
               <Link className="btn btn-primary" href={whatsappUrl(`Hello channelmoa, I read “${post.title}”. ${post.cta.text} Please send me the relevant details.`)}>Ask on WhatsApp</Link>
-              <Link className="btn btn-secondary" href="/packages">Choose a Package</Link>
+              <Link className="btn btn-secondary" href={clusterCta.href}>{clusterCta.label}</Link>
             </div>
           </div>
         </div>

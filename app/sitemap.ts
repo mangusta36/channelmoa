@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/services", lastModified: "2026-07-10" },
     { route: "/packages", lastModified: "2026-07-10" },
     { route: "/apps", lastModified: "2026-07-10" },
+    { route: "/moa-iptv", lastModified: "2026-09-15" },
     { route: "/reseller", lastModified: "2026-08-01" },
     { route: "/blog", lastModified: "2026-08-01" },
     { route: "/about", lastModified: "2026-08-01" },
