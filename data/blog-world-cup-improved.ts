@@ -41,7 +41,7 @@ export const worldCupImprovedPost: BlogPost = {
       ],
       subheading: "Timing is part of the fix, not just the checklist",
       details: [
-        "A check that would work perfectly well if done during the event is still in the wrong place if it could have been done earlier instead. Confirming an account is active on the morning of the event is strictly worse than confirming it several days earlier — the check itself is identical, but only one version of it leaves time to act if something is wrong."
+        "A check that would work perfectly well if done during the event is still in the wrong place if it could have been done earlier instead. Confirming an account is active on the morning of the event is strictly worse than confirming it several days earlier — the check itself is identical, but only one version of it leaves time to act if something is wrong. For current league-specific viewing decisions, use the [2026 MLB playoffs and World Series guide](/blog/how-to-watch-mlb-playoffs-world-series-2026) for postseason baseball or the [2026-27 NBA season viewing guide](/blog/how-to-watch-nba-season-2026-27) for basketball platforms, local games, and League Pass."
       ]
     },
     {
@@ -77,6 +77,8 @@ export const worldCupImprovedPost: BlogPost = {
     { label: "Set up Samsung and LG Smart TVs", href: "/blog/samsung-lg-smart-tv-iptv-setup-guide-2026" },
     { label: "Optimize a Firestick before a live event", href: "/blog/firestick-iptv-setup-optimization" },
     { label: "Optimize Android streaming performance", href: "/blog/android-iptv-performance-guide" },
+    { label: "Watch the 2026 MLB playoffs and World Series", href: "/blog/how-to-watch-mlb-playoffs-world-series-2026" },
+    { label: "Watch the 2026-27 NBA season", href: "/blog/how-to-watch-nba-season-2026-27" },
     { label: "Check the complete 4K streaming path", href: "/blog/iptv-4k-streaming-requirements" },
     { label: "Review lawful subscription evidence", href: "/blog/legal-iptv-subscription-checklist-2026" }
   ],

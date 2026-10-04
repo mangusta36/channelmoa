@@ -34,6 +34,7 @@ export type BlogPost = {
 
 import { newBlogPosts } from "@/data/blog-new-posts";
 import { improvedBlogPosts } from "@/data/blog-improved-posts";
+import { sports2026Guides } from "@/data/blog-2026-sports-guides";
 
 const published = "2026-07-10";
 const originalBlogPosts: BlogPost[] = [
@@ -1106,6 +1107,7 @@ export function categorySlug(category: string) {
 }
 
 export const blogPosts: BlogPost[] = [
+  ...sports2026Guides,
   ...originalBlogPosts.filter((post) => post.slug !== "iptv-login-watch-world-cup-guide" && !improvedBlogPosts.some((improved) => improved.slug === post.slug)),
   ...improvedBlogPosts
 ].map((post) => ({
