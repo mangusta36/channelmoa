@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { BlogPreview, DeviceCompatibility, FAQ, Hero, HomepageGuidance, PricingCards, ResellerBand, ServiceGrid, StatsStrip, WhyChoose } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import { faqs } from "@/data/site-data";
-import { serviceJsonLd, webPageJsonLd } from "@/lib/site";
+import { pageMetadata, serviceJsonLd, webPageJsonLd } from "@/lib/site";
+
+export const metadata: Metadata = pageMetadata({
+  title: "channelmoa IPTV Streaming Platform | Live TV, Sports & VOD",
+  description: "Explore channelmoa streaming packages, supported apps, device setup guidance, practical troubleshooting, and reseller workflows.",
+  path: "/"
+});
 
 export default function HomePage() {
   const faqJsonLd = {

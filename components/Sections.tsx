@@ -254,7 +254,7 @@ export function BlogCard({ post }: { post: (typeof blogPosts)[number] }) {
   return (
     <article className="blog-card">
       <div className="blog-card-image">
-        <Image src={post.featuredImage || post.image} alt={post.featuredImageAlt || presentation?.visualAlt} width={post.imageWidth || 1200} height={post.imageHeight || 630} sizes="(max-width: 680px) 100vw, (max-width: 1020px) 50vw, 33vw" />
+        <Image src={post.featuredImage || post.image} alt={post.featuredImageAlt || presentation?.visualAlt} width={post.imageWidth || 1200} height={post.imageHeight || 630} sizes="(max-width: 680px) 100vw, (max-width: 1020px) 50vw, 33vw" style={post.cardImagePosition ? { objectPosition: post.cardImagePosition } : undefined} />
       </div>
       <div className="meta"><BadgeCheck size={15} /> <Link href={`/blog/category/${categorySlug(post.category || presentation?.topic || "Streaming guides")}`}>{post.category || presentation?.topic}</Link> · {post.readingTime}</div>
       <h3><Link href={`/blog/${post.slug}`}>{post.title}</Link></h3>

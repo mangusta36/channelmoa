@@ -9,6 +9,8 @@ import { blogPresentation } from "@/data/blog-expert-guides";
 import { blogEditorialAdditions } from "@/data/blog-editorial-additions";
 import { canonical, pageMetadata, siteConfig, whatsappUrl } from "@/lib/site";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
 }

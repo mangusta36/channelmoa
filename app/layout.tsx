@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { organizationJsonLd, pageMetadata, siteConfig, websiteJsonLd } from "@/lib/site";
+import { organizationJsonLd, siteConfig, websiteJsonLd } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,12 +13,7 @@ export const metadata: Metadata = {
       { url: "/icon.png", type: "image/png", sizes: "512x512" }
     ],
     apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }]
-  },
-  ...pageMetadata({
-    title: "channelmoa IPTV Streaming Platform | Live TV, Sports & VOD",
-    description: "Explore channelmoa streaming packages, supported apps, device setup guidance, practical troubleshooting, and reseller workflows.",
-    path: "/"
-  })
+  }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

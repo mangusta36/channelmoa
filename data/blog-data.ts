@@ -12,6 +12,8 @@ export type BlogPost = {
   ogImage: string;
   imageWidth?: number;
   imageHeight?: number;
+  // Blog card thumbnails are cropped to 3:2; set this (CSS object-position) when the default centered crop cuts off key content.
+  cardImagePosition?: string;
   category?: string;
   excerpt?: string;
   primaryKeyword?: string;

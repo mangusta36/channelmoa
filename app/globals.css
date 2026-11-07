@@ -914,6 +914,7 @@ p {
 }
 
 .blog-card h3 a { display: inline; color: inherit; font-weight: inherit; }
+.blog-card-image img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
 
 .category-nav { display: flex; flex-wrap: wrap; gap: .65rem; margin-bottom: 1.5rem; }
 .category-nav a { padding: .45rem .7rem; border: 1px solid var(--line); border-radius: 6px; color: var(--blue); background: white; font-size: .88rem; font-weight: 800; }

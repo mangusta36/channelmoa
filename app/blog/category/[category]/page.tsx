@@ -8,6 +8,8 @@ import { canonical, pageMetadata, webPageJsonLd } from "@/lib/site";
 
 type CategoryPageProps = { params: Promise<{ category: string }> };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return blogCategories.map((category) => ({ category: categorySlug(category) }));
 }
